@@ -22,13 +22,24 @@
         "heading": "Kontak",
         "text": "Segera hadir."
       }
+    ],
+    "links": [
+      {
+        "type": "WhatsApp",
+        "url": "08214154441"
+      },
+      {
+        "type": "Instagram",
+        "url": "https://www.instagram.com/lazsmpeduli/"
+      }
     ]
   },
   "theme": {
     "palette": "Hijau (bawaan)",
     "headingFont": "Bricolage Grotesque",
     "bodyFont": "Source Sans 3",
-    "textSize": "Normal"
+    "textSize": "Normal",
+    "logoSize": "Besar"
   },
   "stats": [
     {
