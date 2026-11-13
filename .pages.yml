@@ -82,6 +82,48 @@ content:
               - name: url
                 label: Nomor WA (08xxx), @username Instagram, atau link lengkap
                 type: string
+      - name: footer
+        label: Footer (bagian bawah situs)
+        type: object
+        fields:
+          - name: description
+            label: Kalimat deskripsi (kosongkan untuk kalimat bawaan)
+            type: text
+          - name: quickTitle
+            label: Judul kolom tautan (contoh Tautan)
+            type: string
+          - name: donateText
+            label: Tulisan link donasi (contoh Donasi sekarang)
+            type: string
+          - name: quick
+            label: Tautan tambahan di footer
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Nama tautan
+                type: string
+              - name: url
+                label: Link (news.html, about.html, atau https://...)
+                type: string
+          - name: contactTitle
+            label: Judul kolom kontak (contoh Kontak)
+            type: string
+          - name: address
+            label: Alamat (boleh lebih dari satu baris)
+            type: text
+          - name: phone
+            label: Nomor telepon
+            type: string
+          - name: email
+            label: Email
+            type: string
+          - name: hours
+            label: Jam layanan (contoh Senin-Jumat, 08.00-16.00)
+            type: string
+          - name: copyright
+            label: Tulisan hak cipta (pakai {tahun} agar tahun otomatis)
+            type: string
       - name: theme
         label: Tampilan (warna, huruf, ukuran tulisan)
         type: object
