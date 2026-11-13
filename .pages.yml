@@ -1,0 +1,125 @@
+media:
+  input: img
+  output: /img
+content:
+  - name: site
+    label: Isi Situs (berita, angka, logo)
+    type: file
+    path: data/site.json
+    format: json
+    fields:
+      - name: name
+        label: Nama lembaga
+        type: string
+      - name: lynk
+        label: Link halaman Lynk
+        type: string
+      - name: logo
+        label: Logo (kosongkan untuk ikon bawaan)
+        type: image
+      - name: showName
+        label: Tampilkan nama di samping logo
+        type: boolean
+      - name: profile
+        label: Halaman Profil
+        type: object
+        fields:
+          - name: title
+            label: Judul halaman
+            type: string
+          - name: intro
+            label: Kalimat pembuka (opsional, kosongkan jika tidak perlu)
+            type: text
+          - name: sections
+            label: Bagian profil
+            type: object
+            list: true
+            fields:
+              - name: heading
+                label: Judul bagian
+                type: string
+              - name: text
+                label: Isi (pisahkan paragraf dengan baris kosong)
+                type: text
+      - name: theme
+        label: Tampilan (warna, huruf, ukuran tulisan)
+        type: object
+        fields:
+          - name: palette
+            label: Pilihan warna
+            type: select
+            options:
+              values: [Hijau (bawaan), Biru, Ungu, Merah marun, Teal]
+          - name: headingFont
+            label: Huruf judul
+            type: select
+            options:
+              values: [Bricolage Grotesque, Source Sans 3, Poppins, Montserrat, Nunito, Inter, Lora, Merriweather, Playfair Display]
+          - name: bodyFont
+            label: Huruf isi
+            type: select
+            options:
+              values: [Bricolage Grotesque, Source Sans 3, Poppins, Montserrat, Nunito, Inter, Lora, Merriweather, Playfair Display]
+          - name: textSize
+            label: Ukuran tulisan
+            type: select
+            options:
+              values: [Kecil, Normal, Besar, Sangat besar]
+          - name: forest
+            label: "Warna utama gelap (opsional, contoh #0f3d2a)"
+            type: string
+            pattern:
+              regex: '^(|#[0-9a-fA-F]{6})$'
+              message: Tulis kode warna seperti #0f3d2a, atau kosongkan
+          - name: leaf
+            label: "Warna sekunder (opsional)"
+            type: string
+            pattern:
+              regex: '^(|#[0-9a-fA-F]{6})$'
+              message: Tulis kode warna seperti #2e8b57, atau kosongkan
+          - name: sun
+            label: "Warna tombol dan angka (opsional)"
+            type: string
+            pattern:
+              regex: '^(|#[0-9a-fA-F]{6})$'
+              message: Tulis kode warna seperti #f4b942, atau kosongkan
+      - name: stats
+        label: Angka slideshow di beranda
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Judul angka
+            type: string
+          - name: value
+            label: Nilai (angka saja, tanpa titik)
+            type: number
+          - name: money
+            label: Tampilkan sebagai Rupiah
+            type: boolean
+      - name: news
+        label: Kabar
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Judul
+            type: string
+          - name: date
+            label: Tanggal
+            type: date
+          - name: summary
+            label: Ringkasan singkat (tampil di kartu)
+            type: text
+          - name: image
+            label: Foto
+            type: image
+          - name: body
+            label: Isi lengkap (pisahkan paragraf dengan baris kosong)
+            type: text
+          - name: source
+            label: Nama sumber (opsional)
+            type: string
+          - name: sourceUrl
+            label: Link berita asli (opsional)
+            type: string
