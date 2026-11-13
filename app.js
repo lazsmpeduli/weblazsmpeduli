@@ -86,7 +86,20 @@ function run(S) {
     var ic = (P.links || []).map(function (l) {
       var u = linkUrl(l); return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" aria-label="' + esc(l.label || l.type || "Tautan") + '">' + (ICONS[l.type] || ICONS.Lainnya) + '</a>' : "";
     }).join("");
-    $("#ftr").innerHTML = '<div class="wrap foot"><p><strong>' + esc(S.name) + '</strong><br>Lembaga amil zakat. Donasi diproses melalui Lynk.</p><div><p><a href="' + S.lynk + '" target="_blank" rel="noopener">Donasi sekarang</a></p>' + (ic ? '<div class="fsoc">' + ic + '</div>' : '') + '</div><p class="mut">&copy; ' + new Date().getFullYear() + ' ' + esc(S.name) + '</p></div>';
+    var F = S.footer || {};
+    var fcopy = String(F.copyright || ("\u00a9 {tahun} " + S.name)).replace(/\{tahun\}/g, new Date().getFullYear());
+    var desc = F.description || "Lembaga amil zakat. Donasi diproses melalui Lynk.";
+    var quick = (F.quick || []).filter(function (l) { return l && l.label && l.url; }).map(function (l) { return '<li><a href="' + href(l.url) + '"' + ext(l.url) + '>' + esc(l.label) + '</a></li>'; }).join("");
+    var contact = [];
+    if (F.address) contact.push('<li>' + esc(F.address) + '</li>');
+    if (F.phone) contact.push('<li><a href="tel:' + esc(String(F.phone).replace(/[^\d+]/g, "")) + '">' + esc(F.phone) + '</a></li>');
+    if (F.email) contact.push('<li><a href="mailto:' + esc(F.email) + '">' + esc(F.email) + '</a></li>');
+    if (F.hours) contact.push('<li>' + esc(F.hours) + '</li>');
+    $("#ftr").innerHTML = '<div class="wrap foot"><div class="fcol"><strong>' + esc(S.name) + '</strong>' +
+      toParas(desc).map(function (x) { return '<p>' + esc(x) + '</p>'; }).join("") + (ic ? '<div class="fsoc">' + ic + '</div>' : '') + '</div>' +
+      '<div class="fcol"><h4>' + esc(F.quickTitle || "Tautan") + '</h4><ul><li><a href="' + href(S.lynk) + '" target="_blank" rel="noopener">' + esc(F.donateText || "Donasi sekarang") + '</a></li>' + quick + '</ul></div>' +
+      (contact.length ? '<div class="fcol"><h4>' + esc(F.contactTitle || "Kontak") + '</h4><ul>' + contact.join("") + '</ul></div>' : '') +
+      '</div><div class="wrap fbot">' + esc(fcopy) + '</div>';
     var hdr = $("#hdr"), burger = $(".burger", hdr);
     function closeDd() { Array.prototype.forEach.call(hdr.querySelectorAll(".dd.open"), function (li) { li.classList.remove("open"); li.firstChild.setAttribute("aria-expanded", "false"); }); }
     burger.onclick = function (e) { e.stopPropagation(); var o = hdr.classList.toggle("menu-open"); burger.setAttribute("aria-expanded", String(o)); };
@@ -119,7 +132,7 @@ function run(S) {
   }
 
   var box = $("#slides");
-  if (box) {
+  if (box && S.stats.length) {
     box.innerHTML = S.stats.map(function (s, i) {
       return '<div class="slide" role="group" aria-label="' + (i + 1) + ' dari ' + S.stats.length + '"><div class="num" data-v="' + s.value + '" data-m="' + (s.money ? 1 : 0) + '">' + fmt(s.value, s.money) + '</div><div class="lbl">' + s.label + '</div></div>';
     }).join("");
