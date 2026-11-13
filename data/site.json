@@ -34,6 +34,10 @@
       }
     ]
   },
+  "footer": {
+    "phone": "08214154441",
+    "email": "smpeduli@gmail.com"
+  },
   "theme": {
     "palette": "Hijau (bawaan)",
     "headingFont": "Bricolage Grotesque",
