@@ -1,20 +1,10 @@
 {
   "name": "LAZ SM Peduli",
   "lynk": "https://lynk.id/lazsmpeduli",
-  "logo": "",
+  "logo": "/img/logo.png",
   "showName": false,
-  "theme": {
-    "palette": "Hijau (bawaan)",
-    "headingFont": "Bricolage Grotesque",
-    "bodyFont": "Source Sans 3",
-    "textSize": "Normal",
-    "forest": "",
-    "leaf": "",
-    "sun": ""
-  },
   "profile": {
     "title": "Profil LAZ SM Peduli",
-    "intro": "",
     "sections": [
       {
         "heading": "Tentang kami",
@@ -34,6 +24,12 @@
       }
     ]
   },
+  "theme": {
+    "palette": "Hijau (bawaan)",
+    "headingFont": "Bricolage Grotesque",
+    "bodyFont": "Source Sans 3",
+    "textSize": "Normal"
+  },
   "stats": [
     {
       "label": "Total donasi terkumpul",
@@ -47,7 +43,8 @@
     },
     {
       "label": "Jumlah donatur",
-      "value": 19
+      "value": 19,
+      "money": false
     }
   ],
   "news": [
@@ -55,10 +52,10 @@
       "title": "Kanwil Kemenag Jatim Serahkan SK Izin Operasional LAZ Sabilil Muttaqien Peduli",
       "date": "2026-10-23",
       "summary": "Kepala Kanwil Kemenag Jawa Timur menyerahkan SK izin operasional di Magetan, sekaligus meluncurkan Gerakan S2 (Sedino Satus) dan memberi santunan kepada empat santri.",
-      "image": "",
+      "image": "/img/sklaz.jpg",
+      "body": "Kepala Kantor Wilayah Kementerian Agama (Kanwil Kemenag) Jawa Timur, Akhmad Sruji Bahtiar, menyerahkan Surat Keputusan (SK) izin operasional kepada LAZ Sabilil Muttaqien Peduli. Penyerahan berlangsung di PSM Banaran, Kabupaten Magetan, pada Jumat (23/10/2026).\n\nPenyerahan SK ini menjadi bagian dari rangkaian acara yang juga mencakup pembinaan dan pengarahan, pengukuhan lembaga amil zakat, penandatanganan prasasti, serta pemberian santunan kepada empat santri Bani Ali Mursad. Pada kesempatan yang sama, Akhmad Sruji Bahtiar meluncurkan Gerakan S2 atau Sedino Satus.\n\nDalam arahannya, ia menegaskan bahwa zakat bukan sekadar kewajiban ibadah bagi umat Islam. Zakat juga berfungsi sosial, yaitu membantu masyarakat yang membutuhkan, terutama fakir miskin dan kaum dhuafa. Karena itu, menurutnya, lembaga amil zakat harus mengelola dana zakat secara profesional, amanah, transparan, dan tepat sasaran agar manfaatnya benar-benar dirasakan penerima.\n\nIa menilai lembaga amil zakat berperan penting dalam menghimpun dan menyalurkan zakat secara lebih terorganisasi. Pengelolaan yang baik diharapkan memperluas jangkauan bantuan dan menumbuhkan kepercayaan masyarakat untuk menyalurkan zakat lewat lembaga resmi.\n\nDengan terbitnya SK tersebut, LAZ Sabilil Muttaqien Peduli diharapkan dapat menghimpun dan menyalurkan zakat sesuai ketentuan yang berlaku. Lembaga ini juga diharapkan menjangkau lebih banyak penerima manfaat melalui program yang disusun berdasarkan kebutuhan masyarakat.\n\nAdapun Gerakan S2 (Sedino Satus) diperkenalkan untuk menumbuhkan kebiasaan berbagi dan memperkuat kepedulian sosial. Akhmad Sruji Bahtiar menyebut bahwa kepedulian sosial tidak harus lewat bantuan besar, tetapi bisa berupa partisipasi bersama yang dilakukan secara konsisten.\n\nSantunan bagi empat santri Bani Ali Mursad turut melengkapi kegiatan ini sebagai wujud kepedulian kepada mereka yang membutuhkan dukungan.\n\nRangkaian kegiatan di Magetan ini menjadi bagian dari upaya memperkuat kerja sama antara Kementerian Agama dan lembaga keagamaan dalam pengelolaan zakat. Dengan tata kelola yang baik dan dukungan masyarakat, zakat diharapkan berkontribusi lebih besar bagi kesejahteraan umat.",
       "source": "RRI.CO.ID",
-      "sourceUrl": "",
-      "body": "Kepala Kantor Wilayah Kementerian Agama (Kanwil Kemenag) Jawa Timur, Akhmad Sruji Bahtiar, menyerahkan Surat Keputusan (SK) izin operasional kepada LAZ Sabilil Muttaqien Peduli. Penyerahan berlangsung di PSM Banaran, Kabupaten Magetan, pada Jumat (23/10/2026).\n\nPenyerahan SK ini menjadi bagian dari rangkaian acara yang juga mencakup pembinaan dan pengarahan, pengukuhan lembaga amil zakat, penandatanganan prasasti, serta pemberian santunan kepada empat santri Bani Ali Mursad. Pada kesempatan yang sama, Akhmad Sruji Bahtiar meluncurkan Gerakan S2 atau Sedino Satus.\n\nDalam arahannya, ia menegaskan bahwa zakat bukan sekadar kewajiban ibadah bagi umat Islam. Zakat juga berfungsi sosial, yaitu membantu masyarakat yang membutuhkan, terutama fakir miskin dan kaum dhuafa. Karena itu, menurutnya, lembaga amil zakat harus mengelola dana zakat secara profesional, amanah, transparan, dan tepat sasaran agar manfaatnya benar-benar dirasakan penerima.\n\nIa menilai lembaga amil zakat berperan penting dalam menghimpun dan menyalurkan zakat secara lebih terorganisasi. Pengelolaan yang baik diharapkan memperluas jangkauan bantuan dan menumbuhkan kepercayaan masyarakat untuk menyalurkan zakat lewat lembaga resmi.\n\nDengan terbitnya SK tersebut, LAZ Sabilil Muttaqien Peduli diharapkan dapat menghimpun dan menyalurkan zakat sesuai ketentuan yang berlaku. Lembaga ini juga diharapkan menjangkau lebih banyak penerima manfaat melalui program yang disusun berdasarkan kebutuhan masyarakat.\n\nAdapun Gerakan S2 (Sedino Satus) diperkenalkan untuk menumbuhkan kebiasaan berbagi dan memperkuat kepedulian sosial. Akhmad Sruji Bahtiar menyebut bahwa kepedulian sosial tidak harus lewat bantuan besar, tetapi bisa berupa partisipasi bersama yang dilakukan secara konsisten.\n\nSantunan bagi empat santri Bani Ali Mursad turut melengkapi kegiatan ini sebagai wujud kepedulian kepada mereka yang membutuhkan dukungan.\n\nRangkaian kegiatan di Magetan ini menjadi bagian dari upaya memperkuat kerja sama antara Kementerian Agama dan lembaga keagamaan dalam pengelolaan zakat. Dengan tata kelola yang baik dan dukungan masyarakat, zakat diharapkan berkontribusi lebih besar bagi kesejahteraan umat."
+      "sourceUrl": "https://rri.co.id/madiun/regional/2841400/kemenag-jatim-dorong-laz-kelola-zakat-tepat-sasaran"
     }
   ]
 }
