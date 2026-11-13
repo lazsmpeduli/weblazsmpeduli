@@ -20,6 +20,28 @@ content:
       - name: showName
         label: Tampilkan nama di samping logo
         type: boolean
+      - name: menu
+        label: Menu di header (kosongkan untuk menu bawaan)
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Nama menu
+            type: string
+          - name: url
+            label: Link (contoh news.html atau https://lynk.id/...), kosongkan jika punya dropdown
+            type: string
+          - name: children
+            label: Isi dropdown (opsional)
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Nama
+                type: string
+              - name: url
+                label: Link
+                type: string
       - name: profile
         label: Halaman Profil
         type: object
@@ -41,6 +63,25 @@ content:
               - name: text
                 label: Isi (pisahkan paragraf dengan baris kosong)
                 type: text
+          - name: linksTitle
+            label: Judul bagian tautan (contoh Hubungi kami)
+            type: string
+          - name: links
+            label: Tautan WhatsApp, Instagram, dll
+            type: object
+            list: true
+            fields:
+              - name: type
+                label: Jenis
+                type: select
+                options:
+                  values: [WhatsApp, Instagram, Lainnya]
+              - name: label
+                label: Teks tombol (opsional)
+                type: string
+              - name: url
+                label: Nomor WA (08xxx), @username Instagram, atau link lengkap
+                type: string
       - name: theme
         label: Tampilan (warna, huruf, ukuran tulisan)
         type: object
@@ -65,6 +106,16 @@ content:
             type: select
             options:
               values: [Kecil, Normal, Besar, Sangat besar]
+          - name: logoSize
+            label: Ukuran logo di header
+            type: select
+            options:
+              values: [Normal, Besar, Sangat besar]
+          - name: pageWidth
+            label: Lebar halaman
+            type: select
+            options:
+              values: [Standar, Lebar, Sangat lebar]
           - name: forest
             label: "Warna utama gelap (opsional, contoh #0f3d2a)"
             type: string
