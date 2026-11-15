@@ -70,7 +70,7 @@ function run(S) {
   function ext(u) { return /^https?:/i.test(u || "") ? ' target="_blank" rel="noopener"' : ""; }
   function renderChrome() {
     var P = S.profile || {};
-    var menu = S.menu && S.menu.length ? S.menu : [{ label: "Beranda", url: "index.html" }, { label: "Kabar", url: "news.html" }, { label: "Profil", url: "about.html" }];
+    var menu = S.menu && S.menu.length ? S.menu : [{ label: "Beranda", url: "index.html" }, { label: "Program", url: "program.html" }, { label: "Kabar", url: "news.html" }, { label: "Profil", url: "about.html" }];
     var cur = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "") || "index";
     if (cur === "article") cur = "news";
     function isCur(u) { return u && !/^https?:/i.test(u) && String(u).split(/[?#]/)[0].replace(/\.html$/, "") === cur; }
@@ -110,6 +110,34 @@ function run(S) {
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeDd(); hdr.classList.remove("menu-open"); } });
   }
   renderChrome();
+  var CATS = [["Donasi", "donasi"], ["Zakat", "zakat"], ["Sedekah", "sedekah"], ["Wakaf", "wakaf"]];
+  var DEFDESC = { Donasi: "Ulurkan bantuan Anda untuk meringankan beban mereka yang membutuhkan.", Zakat: "Tunaikan zakat maal, zakat fitrah, dan zakat lainnya melalui lembaga kami.", Sedekah: "Sedekahkan sebagian harta Anda bagi mereka yang membutuhkan.", Wakaf: "Salurkan wakaf Anda untuk kemaslahatan umat yang terus mengalir." };
+  var G = S.program || {};
+  var cats = CATS.map(function (c, i) {
+    return { title: c[0], id: c[1], n: ("0" + (i + 1)).slice(-2), desc: G[c[1] + "Desc"] || DEFDESC[c[0]], icon: G[c[1] + "Icon"] || "",
+      cards: (G.cards || []).filter(function (x) { return x && x.category === c[0] && x.title; }) };
+  });
+  if ($("#progHome")) {
+    $("#progTitle").textContent = G.title || "Program Kami";
+    $("#progHome").innerHTML = cats.map(function (c) {
+      return '<a class="pitem" href="program.html#' + c.id + '"><span class="phead">' + (c.icon ? '<img src="' + esc(c.icon) + '" alt="">' : '') + c.title + '</span><span class="pdesc">' + esc(c.desc) + '</span><span class="pmore">Mulai ' + c.title + ' &raquo;</span></a>';
+    }).join("");
+  }
+  if ($("#progPage")) {
+    function pcard(x) {
+      var inner = (x.image ? '<img src="' + esc(x.image) + '" alt="" loading="lazy">' : '<div class="ph"></div>') + '<div class="cb"><h3>' + esc(x.title) + '</h3></div>';
+      return x.url ? '<a class="card" href="' + href(x.url) + '"' + ext(x.url) + '>' + inner + '</a>' : '<div class="card">' + inner + '</div>';
+    }
+    $("#progPage").innerHTML = '<h1>' + esc(G.title || "Program Kami") + '</h1>' + (G.intro ? '<p class="lead">' + esc(G.intro) + '</p>' : '') +
+      '<nav class="chips" aria-label="Kategori program">' + cats.map(function (c) { return '<a href="#' + c.id + '">' + c.title + '</a>'; }).join("") + '</nav>' +
+      cats.map(function (c) {
+        return '<section class="psec" id="' + c.id + '"><h2>' + c.title + '</h2><p class="pdesc2">' + esc(c.desc) + '</p><div class="grid pgrid">' +
+          (c.cards.length ? c.cards.map(pcard).join("") : '<p class="empty">Belum ada program di kategori ini.</p>') + '</div></section>';
+      }).join("");
+    document.title = (G.title || "Program Kami") + " | " + S.name;
+    if (location.hash) { var tg = document.getElementById(location.hash.slice(1)); if (tg) tg.scrollIntoView(); }
+  }
+
   if ($("#profile")) {
     var P = S.profile || {};
     $("#profile").innerHTML = '<h1>' + esc(P.title || "Profil " + S.name) + '</h1>' + (P.intro ? '<p class="lead">' + esc(P.intro) + '</p>' : '') +
