@@ -82,6 +82,59 @@ content:
               - name: url
                 label: Nomor WA (08xxx), @username Instagram, atau link lengkap
                 type: string
+      - name: program
+        label: Halaman Program
+        type: object
+        fields:
+          - name: title
+            label: Judul halaman dan bagian beranda (contoh Program Kami)
+            type: string
+          - name: intro
+            label: Kalimat pembuka halaman (opsional)
+            type: text
+          - name: donasiDesc
+            label: Deskripsi Donasi (kosongkan untuk teks bawaan)
+            type: text
+          - name: donasiIcon
+            label: Ikon Donasi (opsional)
+            type: image
+          - name: zakatDesc
+            label: Deskripsi Zakat (kosongkan untuk teks bawaan)
+            type: text
+          - name: zakatIcon
+            label: Ikon Zakat (opsional)
+            type: image
+          - name: sedekahDesc
+            label: Deskripsi Sedekah (kosongkan untuk teks bawaan)
+            type: text
+          - name: sedekahIcon
+            label: Ikon Sedekah (opsional)
+            type: image
+          - name: wakafDesc
+            label: Deskripsi Wakaf (kosongkan untuk teks bawaan)
+            type: text
+          - name: wakafIcon
+            label: Ikon Wakaf (opsional)
+            type: image
+          - name: cards
+            label: Kartu program (gambar, judul, link Lynk)
+            type: object
+            list: true
+            fields:
+              - name: category
+                label: Kategori
+                type: select
+                options:
+                  values: [Donasi, Zakat, Sedekah, Wakaf]
+              - name: title
+                label: Judul kartu
+                type: string
+              - name: image
+                label: Gambar
+                type: image
+              - name: url
+                label: Link kampanye di Lynk
+                type: string
       - name: footer
         label: Footer (bagian bawah situs)
         type: object
