@@ -75,3 +75,46 @@ nav a[aria-current]{box-shadow:none;color:var(--leaf)}nav .sub{position:static;b
 .pdesc{display:block;margin-top:8px;color:var(--mut)}.pmore{display:inline-block;margin-top:14px;color:var(--leaf);font-weight:700}.pitem:hover .pmore{text-decoration:underline}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}.chips a{padding:8px 18px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:600;color:var(--forest);background:#fff}.chips a:hover{border-color:var(--leaf);color:var(--leaf)}
 .psec{padding-top:40px;scroll-margin-top:calc(var(--logo-h,56px) + 40px)}.psec h2{margin-bottom:6px}.pdesc2{margin:0 0 20px;color:var(--mut);max-width:60ch}.pgrid .cb h3{margin:0}
+
+/* Kalkulator zakat */
+#kz h1{font-size:clamp(2rem,5vw,2.8rem);margin-bottom:12px}
+#kz .kcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;max-width:860px;box-shadow:0 8px 30px rgba(15,61,42,.08)}
+#kz .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+#kz .tab{border:1px solid var(--line);background:var(--mist);color:var(--ink);padding:10px 18px;border-radius:999px;font:inherit;font-weight:600;cursor:pointer}
+#kz .tab[aria-selected=true]{background:var(--forest);color:#fff;border-color:var(--forest)}
+#kz .tab.g[aria-selected=true]{background:var(--leaf);border-color:var(--leaf)}
+#kz .ksub .tab{padding:7px 14px;font-size:.92rem}
+#kz .desc{color:var(--mut);margin:0 0 18px}
+#kz .kgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){#kz .kgrid{grid-template-columns:1fr}#kz .kcard{padding:18px}}
+#kz label{display:block;font-weight:600;font-size:.95rem;margin-bottom:4px}
+#kz .hint{font-weight:400;color:var(--mut);font-size:.82rem;display:block}
+#kz .inp{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+#kz .inp:focus-within{outline:3px solid var(--sun)}
+#kz .inp span{padding:0 12px;color:var(--mut);background:var(--mist);align-self:stretch;display:flex;align-items:center;font-size:.9rem}
+#kz .inp input{border:0;flex:1;min-width:0;padding:12px;font:inherit;outline:0;background:transparent}
+#kz .full{grid-column:1/-1}
+#kz .check{display:flex;gap:10px;align-items:flex-start;background:var(--mist);padding:12px 14px;border-radius:12px;cursor:pointer}
+#kz .check input{width:20px;height:20px;margin-top:2px;accent-color:var(--leaf)}
+#kz .methods{margin-bottom:6px;display:flex;gap:8px;flex-wrap:wrap}
+#kz .methods label{display:flex;gap:8px;align-items:center;border:1px solid var(--line);padding:9px 14px;border-radius:12px;margin:0;cursor:pointer}
+#kz .methods input{accent-color:var(--leaf)}
+#kz .actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+#kz .kbtn{display:inline-block;background:var(--sun);color:var(--forest);font-weight:700;padding:13px 26px;border-radius:999px;border:0;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}
+#kz .kbtn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+#kz .res{margin-top:22px;border-radius:18px;background:var(--forest);color:#fff;padding:22px}
+#kz .st{display:inline-block;font-size:.85rem;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--sun);color:var(--forest)}
+#kz .st.no{background:#fff}
+#kz .rows{margin:14px 0 0;display:grid;gap:6px}
+#kz .row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid color-mix(in srgb,var(--forest) 70%,#fff);padding-bottom:6px;font-size:.95rem}
+#kz .row b{font-variant-numeric:tabular-nums;text-align:right}
+#kz .big{font-family:var(--fh),var(--fb),sans-serif;font-size:clamp(2rem,6vw,2.8rem);font-weight:800;color:var(--sun);font-variant-numeric:tabular-nums;margin-top:12px}
+#kz .msg{margin:6px 0 0;color:#cfe3d7;font-size:.95rem}
+#kz .copy{margin-top:14px;background:var(--sun);color:var(--forest);border:0;font:inherit;font-weight:700;padding:10px 20px;border-radius:999px;cursor:pointer}
+#kz .doa{margin-top:18px;background:var(--mist);border:1px solid var(--line);border-radius:18px;padding:20px;text-align:center}
+#kz .doa h3{font-size:1.05rem;margin-bottom:10px}
+#kz .ar{font-family:"Amiri",serif;font-size:1.9rem;line-height:2.1;direction:rtl;margin:6px 0}
+#kz .lat{font-style:italic;color:var(--mut);margin:0}
+#kz .kart{margin:4px 0 14px;font-size:.95rem}
+#kz .knisab,#kz .kfoot{color:var(--mut);font-size:.88rem;max-width:860px;margin:18px 0 0}
+.zlink{display:inline-block;margin-top:10px;font-weight:700;color:var(--leaf)}

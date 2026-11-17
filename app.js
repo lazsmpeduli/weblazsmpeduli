@@ -132,7 +132,8 @@ function run(S) {
       '<nav class="chips" aria-label="Kategori program">' + cats.map(function (c) { return '<a href="#' + c.id + '">' + c.title + '</a>'; }).join("") + '</nav>' +
       cats.map(function (c) {
         return '<section class="psec" id="' + c.id + '"><h2>' + c.title + '</h2><p class="pdesc2">' + esc(c.desc) + '</p><div class="grid pgrid">' +
-          (c.cards.length ? c.cards.map(pcard).join("") : '<p class="empty">Belum ada program di kategori ini.</p>') + '</div></section>';
+          (c.cards.length ? c.cards.map(pcard).join("") : '<p class="empty">Belum ada program di kategori ini.</p>') + '</div>' +
+          (c.id === "zakat" ? '<a class="zlink" href="kalkulator.html">Hitung zakat Anda &raquo;</a>' : '') + '</section>';
       }).join("");
     document.title = (G.title || "Program Kami") + " | " + S.name;
     if (location.hash) { var tg = document.getElementById(location.hash.slice(1)); if (tg) tg.scrollIntoView(); }

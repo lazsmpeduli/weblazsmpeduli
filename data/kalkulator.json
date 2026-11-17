@@ -1,0 +1,60 @@
+{
+  "judul": "Kalkulator Zakat",
+  "intro": "Hitung zakat Anda, lalu tunaikan melalui kami. Hasil hitungan berupa perkiraan.",
+  "hargaEmas": 2000000,
+  "hargaPerak": 25000,
+  "hargaBeras": 15000,
+  "hargaGabah": 4500,
+  "tanggalHarga": "",
+  "tombol": "Tunaikan Zakat",
+  "linkUmum": "",
+  "links": {
+    "emas": "",
+    "perak": "",
+    "uang": "",
+    "surat": "",
+    "niaga": "",
+    "ikan": "",
+    "tambang": "",
+    "perusahaan": "",
+    "hasil": "",
+    "tani": "",
+    "ternak": "",
+    "fitrah": ""
+  },
+  "catatan": "Hasil ini hanya perkiraan. Untuk kepastian hukum zakat Anda, tanyakan kepada amil atau ulama.",
+  "doaMaal": [
+    {
+      "judul": "Niat zakat maal",
+      "arab": "نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ مَالِي فَرْضًا لِلَّهِ تَعَالَى",
+      "latin": "Nawaitu an ukhrija zakāta mālī fardhan lillāhi ta‘ālā.",
+      "arti": "Aku berniat mengeluarkan zakat hartaku, fardu karena Allah Ta‘ala."
+    },
+    {
+      "judul": "Doa menunaikan zakat",
+      "arab": "رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ",
+      "latin": "Rabbanā taqabbal minnā innaka antas-samī‘ul-‘alīm.",
+      "arti": "Ya Tuhan kami, terimalah dari kami (amal kami). Sesungguhnya Engkaulah Yang Maha Mendengar lagi Maha Mengetahui."
+    }
+  ],
+  "doaFitrah": [
+    {
+      "judul": "Niat zakat fitrah untuk diri sendiri",
+      "arab": "نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنْ نَفْسِي فَرْضًا لِلَّهِ تَعَالَى",
+      "latin": "Nawaitu an ukhrija zakātal-fitri ‘an nafsī fardhan lillāhi ta‘ālā.",
+      "arti": "Aku berniat mengeluarkan zakat fitrah untuk diriku, fardu karena Allah Ta‘ala."
+    },
+    {
+      "judul": "Niat zakat fitrah untuk keluarga",
+      "arab": "نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنِّي وَعَنْ جَمِيعِ مَا يَلْزَمُنِي نَفَقَاتُهُمْ شَرْعًا فَرْضًا لِلَّهِ تَعَالَى",
+      "latin": "Nawaitu an ukhrija zakātal-fitri ‘annī wa ‘an jamī‘i mā yalzamunī nafaqātuhum syar‘an fardhan lillāhi ta‘ālā.",
+      "arti": "Aku berniat mengeluarkan zakat fitrah untuk diriku dan semua orang yang nafkahnya menjadi tanggunganku, fardu karena Allah Ta‘ala."
+    },
+    {
+      "judul": "Doa menunaikan zakat",
+      "arab": "رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ",
+      "latin": "Rabbanā taqabbal minnā innaka antas-samī‘ul-‘alīm.",
+      "arti": "Ya Tuhan kami, terimalah dari kami (amal kami). Sesungguhnya Engkaulah Yang Maha Mendengar lagi Maha Mengetahui."
+    }
+  ]
+}
