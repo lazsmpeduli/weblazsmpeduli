@@ -5,8 +5,20 @@
   "showName": false,
   "menu": [
     {
+      "label": "Program",
+      "url": "program.html"
+    },
+    {
       "label": "Kalkulator Zakat",
       "url": "kalkulator.html"
+    },
+    {
+      "label": "Kabar",
+      "url": "news.html"
+    },
+    {
+      "label": "Profil",
+      "url": "about.html"
     }
   ],
   "profile": {
