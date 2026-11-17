@@ -269,3 +269,73 @@ content:
           - name: sourceUrl
             label: Link berita asli (opsional)
             type: string
+  - name: kalkulator
+    label: Kalkulator Zakat (harga, tautan, doa)
+    type: file
+    path: data/kalkulator.json
+    format: json
+    fields:
+      - name: judul
+        label: Judul halaman
+        type: string
+      - name: intro
+        label: Kalimat pembuka
+        type: text
+      - name: hargaEmas
+        label: Harga emas per gram (angka saja, tanpa titik)
+        type: number
+      - name: hargaPerak
+        label: Harga perak per gram (angka saja)
+        type: number
+      - name: hargaGabah
+        label: Harga gabah per kg (angka saja, untuk nisab pertanian)
+        type: number
+      - name: hargaBeras
+        label: Harga beras per kg (angka saja, untuk zakat fitrah)
+        type: number
+      - name: tanggalHarga
+        label: Keterangan tanggal harga (contoh Diperbarui 17 November 2026)
+        type: string
+      - name: tombol
+        label: Tulisan tombol (contoh Tunaikan Zakat)
+        type: string
+      - name: linkUmum
+        label: Link umum tombol (kosongkan untuk memakai link Lynk utama)
+        type: string
+      - name: links
+        label: Link Lynk untuk tiap jenis zakat (kosong = pakai link umum)
+        type: object
+        fields:
+          - {name: emas, label: Zakat Emas, type: string}
+          - {name: perak, label: Zakat Perak, type: string}
+          - {name: uang, label: Zakat Uang, type: string}
+          - {name: surat, label: Zakat Surat Berharga, type: string}
+          - {name: niaga, label: Zakat Perniagaan, type: string}
+          - {name: ikan, label: Zakat Perikanan, type: string}
+          - {name: tambang, label: Zakat Pertambangan, type: string}
+          - {name: perusahaan, label: Zakat Perusahaan, type: string}
+          - {name: hasil, label: Zakat Penghasilan, type: string}
+          - {name: tani, label: Zakat Pertanian, type: string}
+          - {name: ternak, label: Zakat Peternakan, type: string}
+          - {name: fitrah, label: Zakat Fitrah, type: string}
+      - name: catatan
+        label: Catatan di bawah kalkulator
+        type: text
+      - name: doaMaal
+        label: Niat dan doa (zakat selain fitrah)
+        type: object
+        list: true
+        fields:
+          - {name: judul, label: Judul, type: string}
+          - {name: arab, label: Tulisan Arab, type: text}
+          - {name: latin, label: Tulisan latin, type: text}
+          - {name: arti, label: Arti, type: text}
+      - name: doaFitrah
+        label: Niat dan doa (zakat fitrah)
+        type: object
+        list: true
+        fields:
+          - {name: judul, label: Judul, type: string}
+          - {name: arab, label: Tulisan Arab, type: text}
+          - {name: latin, label: Tulisan latin, type: text}
+          - {name: arti, label: Arti, type: text}
