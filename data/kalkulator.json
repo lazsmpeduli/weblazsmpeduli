@@ -1,27 +1,12 @@
 {
   "judul": "Kalkulator Zakat",
   "intro": "Hitung zakat Anda, lalu tunaikan melalui kami. Hasil hitungan berupa perkiraan.",
-  "hargaEmas": 2000000,
-  "hargaPerak": 25000,
-  "hargaBeras": 15000,
-  "hargaGabah": 4500,
-  "tanggalHarga": "",
+  "hargaEmas": 2522000,
+  "hargaPerak": 27678,
+  "hargaGabah": 8000,
+  "hargaBeras": 13498,
+  "tanggalHarga": "Diperbarui 17 November 2026",
   "tombol": "Tunaikan Zakat",
-  "linkUmum": "",
-  "links": {
-    "emas": "",
-    "perak": "",
-    "uang": "",
-    "surat": "",
-    "niaga": "",
-    "ikan": "",
-    "tambang": "",
-    "perusahaan": "",
-    "hasil": "",
-    "tani": "",
-    "ternak": "",
-    "fitrah": ""
-  },
   "catatan": "Hasil ini hanya perkiraan. Untuk kepastian hukum zakat Anda, tanyakan kepada amil atau ulama.",
   "doaMaal": [
     {
