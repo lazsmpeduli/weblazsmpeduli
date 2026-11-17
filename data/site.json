@@ -15,6 +15,10 @@
     {
       "label": "Kabar",
       "url": "https://weblazsmpeduli.smpeduli.workers.dev/news"
+    },
+    {
+      "label": "Profil",
+      "url": "https://weblazsmpeduli.smpeduli.workers.dev/about"
     }
   ],
   "profile": {
