@@ -67,13 +67,18 @@ function run(S) {
   }
   var CHEV = '<svg class="chev" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>';
   function href(u) { u = String(u || "#").trim(); return esc(/^javascript:/i.test(u) ? "#" : u.replace(/"/g, "%22")); }
-  function ext(u) { return /^https?:/i.test(u || "") ? ' target="_blank" rel="noopener"' : ""; }
+  function sameSite(u) { try { return new URL(u, location.href).hostname === location.hostname; } catch (e) { return false; } }
+  function ext(u) { return /^https?:/i.test(u || "") && !sameSite(u) ? ' target="_blank" rel="noopener"' : ""; }
   function renderChrome() {
     var P = S.profile || {};
     var menu = S.menu && S.menu.length ? S.menu : [{ label: "Beranda", url: "index.html" }, { label: "Program", url: "program.html" }, { label: "Kabar", url: "news.html" }, { label: "Profil", url: "about.html" }];
     var cur = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "") || "index";
     if (cur === "article") cur = "news";
-    function isCur(u) { return u && !/^https?:/i.test(u) && String(u).split(/[?#]/)[0].replace(/\.html$/, "") === cur; }
+    function isCur(u) {
+      if (!u || (/^https?:/i.test(u) && !sameSite(u))) return false;
+      var p = /^https?:/i.test(u) ? new URL(u).pathname : String(u).split(/[?#]/)[0];
+      return (p.split("/").pop() || "index").replace(/\.html$/, "") === cur;
+    }
     var items = menu.filter(function (m) { return m && m.label; }).map(function (m) {
       var kids = (m.children || []).filter(function (c) { return c && c.label; });
       if (kids.length) return '<li class="dd"><button type="button" aria-expanded="false">' + esc(m.label) + CHEV + '</button><ul class="sub">' +
