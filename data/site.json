@@ -3,6 +3,12 @@
   "lynk": "https://lynk.id/lazsmpeduli",
   "logo": "/img/logo.png",
   "showName": false,
+  "menu": [
+    {
+      "label": "Kalkulator Zakat",
+      "url": "https://weblazsmpeduli.smpeduli.workers.dev/kalkulator"
+    }
+  ],
   "profile": {
     "title": "Profil LAZ SM Peduli",
     "sections": [
