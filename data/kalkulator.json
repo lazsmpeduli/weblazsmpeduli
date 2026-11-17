@@ -1,13 +1,13 @@
 {
   "judul": "Kalkulator Zakat",
-  "intro": "Hitung zakat Anda, lalu tunaikan melalui kami. Hasil hitungan berupa perkiraan.",
+  "intro": "Hitung zakat Anda, lalu tunaikan melalui kami. ",
   "hargaEmas": 2522000,
   "hargaPerak": 27678,
   "hargaGabah": 8000,
   "hargaBeras": 13498,
   "tanggalHarga": "Diperbarui 17 November 2026",
   "tombol": "Tunaikan Zakat",
-  "catatan": "Hasil ini hanya perkiraan. Untuk kepastian hukum zakat Anda, tanyakan kepada amil atau ulama.",
+  "catatan": "Mari tunaikan melalui tombol Tunaikan Zakat di atas.",
   "doaMaal": [
     {
       "judul": "Niat zakat maal",
