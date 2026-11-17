@@ -3,24 +3,6 @@
   "lynk": "https://lynk.id/lazsmpeduli",
   "logo": "/img/logo.png",
   "showName": false,
-  "menu": [
-    {
-      "label": "Program",
-      "url": "https://weblazsmpeduli.smpeduli.workers.dev/program"
-    },
-    {
-      "label": "Kalkulator Zakat",
-      "url": "https://weblazsmpeduli.smpeduli.workers.dev/kalkulator"
-    },
-    {
-      "label": "Kabar",
-      "url": "https://weblazsmpeduli.smpeduli.workers.dev/news"
-    },
-    {
-      "label": "Profil",
-      "url": "https://weblazsmpeduli.smpeduli.workers.dev/about"
-    }
-  ],
   "profile": {
     "title": "Profil LAZ SM Peduli",
     "sections": [
