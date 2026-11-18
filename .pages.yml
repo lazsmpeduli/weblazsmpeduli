@@ -2,8 +2,8 @@ media:
   input: img
   output: /img
 content:
-  - name: site
-    label: Isi Situs (berita, angka, logo)
+  - name: umum
+    label: Pengaturan Umum (nama, logo, tampilan)
     type: file
     path: data/site.json
     format: json
@@ -20,163 +20,6 @@ content:
       - name: showName
         label: Tampilkan nama di samping logo
         type: boolean
-      - name: menu
-        label: Menu di header (kosongkan untuk menu bawaan)
-        type: object
-        list: true
-        fields:
-          - name: label
-            label: Nama menu
-            type: string
-          - name: url
-            label: Link (contoh news.html atau https://lynk.id/...), kosongkan jika punya dropdown
-            type: string
-          - name: children
-            label: Isi dropdown (opsional)
-            type: object
-            list: true
-            fields:
-              - name: label
-                label: Nama
-                type: string
-              - name: url
-                label: Link
-                type: string
-      - name: profile
-        label: Halaman Profil
-        type: object
-        fields:
-          - name: title
-            label: Judul halaman
-            type: string
-          - name: intro
-            label: Kalimat pembuka (opsional, kosongkan jika tidak perlu)
-            type: text
-          - name: sections
-            label: Bagian profil
-            type: object
-            list: true
-            fields:
-              - name: heading
-                label: Judul bagian
-                type: string
-              - name: text
-                label: Isi (pisahkan paragraf dengan baris kosong)
-                type: text
-          - name: linksTitle
-            label: Judul bagian tautan (contoh Hubungi kami)
-            type: string
-          - name: links
-            label: Tautan WhatsApp, Instagram, dll
-            type: object
-            list: true
-            fields:
-              - name: type
-                label: Jenis
-                type: select
-                options:
-                  values: [WhatsApp, Instagram, Lainnya]
-              - name: label
-                label: Teks tombol (opsional)
-                type: string
-              - name: url
-                label: Nomor WA (08xxx), @username Instagram, atau link lengkap
-                type: string
-      - name: program
-        label: Halaman Program
-        type: object
-        fields:
-          - name: title
-            label: Judul halaman dan bagian beranda (contoh Program Kami)
-            type: string
-          - name: intro
-            label: Kalimat pembuka halaman (opsional)
-            type: text
-          - name: donasiDesc
-            label: Deskripsi Donasi (kosongkan untuk teks bawaan)
-            type: text
-          - name: donasiIcon
-            label: Ikon Donasi (opsional)
-            type: image
-          - name: zakatDesc
-            label: Deskripsi Zakat (kosongkan untuk teks bawaan)
-            type: text
-          - name: zakatIcon
-            label: Ikon Zakat (opsional)
-            type: image
-          - name: sedekahDesc
-            label: Deskripsi Sedekah (kosongkan untuk teks bawaan)
-            type: text
-          - name: sedekahIcon
-            label: Ikon Sedekah (opsional)
-            type: image
-          - name: wakafDesc
-            label: Deskripsi Wakaf (kosongkan untuk teks bawaan)
-            type: text
-          - name: wakafIcon
-            label: Ikon Wakaf (opsional)
-            type: image
-          - name: cards
-            label: Kartu program (gambar, judul, link Lynk)
-            type: object
-            list: true
-            fields:
-              - name: category
-                label: Kategori
-                type: select
-                options:
-                  values: [Donasi, Zakat, Sedekah, Wakaf]
-              - name: title
-                label: Judul kartu
-                type: string
-              - name: image
-                label: Gambar
-                type: image
-              - name: url
-                label: Link kampanye di Lynk
-                type: string
-      - name: footer
-        label: Footer (bagian bawah situs)
-        type: object
-        fields:
-          - name: description
-            label: Kalimat deskripsi (kosongkan untuk kalimat bawaan)
-            type: text
-          - name: quickTitle
-            label: Judul kolom tautan (contoh Tautan)
-            type: string
-          - name: donateText
-            label: Tulisan link donasi (contoh Donasi sekarang)
-            type: string
-          - name: quick
-            label: Tautan tambahan di footer
-            type: object
-            list: true
-            fields:
-              - name: label
-                label: Nama tautan
-                type: string
-              - name: url
-                label: Link (news.html, about.html, atau https://...)
-                type: string
-          - name: contactTitle
-            label: Judul kolom kontak (contoh Kontak)
-            type: string
-          - name: address
-            label: Alamat (boleh lebih dari satu baris)
-            type: text
-          - name: phone
-            label: Nomor telepon
-            type: string
-          - name: email
-            label: Email
-            type: string
-          - name: hours
-            label: Jam layanan (contoh Senin-Jumat, 08.00-16.00)
-            type: string
-          - name: copyright
-            label: Tulisan hak cipta (pakai {tahun} agar tahun otomatis)
-            type: string
       - name: theme
         label: Tampilan (warna, huruf, ukuran tulisan)
         type: object
@@ -229,46 +72,147 @@ content:
             pattern:
               regex: '^(|#[0-9a-fA-F]{6})$'
               message: Tulis kode warna seperti #f4b942, atau kosongkan
+  - name: menu
+    label: Menu dan Footer
+    type: file
+    path: data/menu.json
+    format: json
+    fields:
+      - name: menu
+        label: Menu di header
+        type: object
+        list: true
+        fields:
+          - {name: label, label: Nama menu, type: string}
+          - {name: url, label: "Link (contoh news.html atau https://lynk.id/...), kosongkan jika punya dropdown", type: string}
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+          - name: children
+            label: Isi dropdown (opsional)
+            type: object
+            list: true
+            fields:
+              - {name: label, label: Nama, type: string}
+              - {name: url, label: Link, type: string}
+              - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+      - name: footer
+        label: Footer (bagian bawah situs)
+        type: object
+        fields:
+          - {name: description, label: Kalimat deskripsi (kosongkan untuk kalimat bawaan), type: text}
+          - {name: quickTitle, label: Judul kolom tautan (contoh Tautan), type: string}
+          - {name: donateText, label: Tulisan link donasi (contoh Donasi sekarang), type: string}
+          - name: quick
+            label: Tautan tambahan di footer
+            type: object
+            list: true
+            fields:
+              - {name: label, label: Nama tautan, type: string}
+              - {name: url, label: "Link (news.html, about.html, atau https://...)", type: string}
+              - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+          - {name: contactTitle, label: Judul kolom kontak (contoh Kontak), type: string}
+          - {name: address, label: Alamat (boleh lebih dari satu baris), type: text}
+          - {name: phone, label: Nomor telepon, type: string}
+          - {name: email, label: Email, type: string}
+          - {name: hours, label: Jam layanan (contoh Senin-Jumat 08.00-16.00), type: string}
+          - {name: copyright, label: "Tulisan hak cipta (pakai {tahun} agar tahun otomatis)", type: string}
+  - name: beranda
+    label: Beranda (angka slideshow)
+    type: file
+    path: data/beranda.json
+    format: json
+    fields:
       - name: stats
         label: Angka slideshow di beranda
         type: object
         list: true
         fields:
-          - name: label
-            label: Judul angka
-            type: string
-          - name: value
-            label: Nilai (angka saja, tanpa titik)
-            type: number
-          - name: money
-            label: Tampilkan sebagai Rupiah
-            type: boolean
+          - {name: label, label: Judul angka, type: string}
+          - {name: value, label: Nilai (angka saja tanpa titik), type: number}
+          - {name: money, label: Tampilkan sebagai Rupiah, type: boolean}
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+  - name: berita
+    label: Berita (Kabar)
+    type: file
+    path: data/berita.json
+    format: json
+    fields:
       - name: news
         label: Kabar
         type: object
         list: true
         fields:
-          - name: title
-            label: Judul
-            type: string
-          - name: date
-            label: Tanggal
-            type: date
-          - name: summary
-            label: Ringkasan singkat (tampil di kartu)
-            type: text
-          - name: image
-            label: Foto
-            type: image
-          - name: body
-            label: Isi lengkap (pisahkan paragraf dengan baris kosong)
-            type: text
-          - name: source
-            label: Nama sumber (opsional)
-            type: string
-          - name: sourceUrl
-            label: Link berita asli (opsional)
-            type: string
+          - {name: title, label: Judul, type: string}
+          - {name: date, label: Tanggal, type: date}
+          - {name: summary, label: Ringkasan singkat (tampil di kartu), type: text}
+          - {name: image, label: Foto, type: image}
+          - {name: body, label: Isi lengkap (pisahkan paragraf dengan baris kosong), type: text}
+          - {name: source, label: Nama sumber (opsional), type: string}
+          - {name: sourceUrl, label: Link berita asli (opsional), type: string}
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+  - name: program
+    label: Program (Donasi, Zakat, Sedekah, Wakaf)
+    type: file
+    path: data/program.json
+    format: json
+    fields:
+      - {name: title, label: Judul halaman dan bagian beranda (contoh Program Kami), type: string}
+      - {name: intro, label: Kalimat pembuka halaman (opsional), type: text}
+      - {name: donasiTampil, label: Tampilkan kategori Donasi, type: boolean, default: true}
+      - {name: donasiDesc, label: Deskripsi Donasi (kosongkan untuk teks bawaan), type: text}
+      - {name: donasiIcon, label: Ikon Donasi (opsional), type: image}
+      - {name: zakatTampil, label: Tampilkan kategori Zakat, type: boolean, default: true}
+      - {name: zakatDesc, label: Deskripsi Zakat (kosongkan untuk teks bawaan), type: text}
+      - {name: zakatIcon, label: Ikon Zakat (opsional), type: image}
+      - {name: sedekahTampil, label: Tampilkan kategori Sedekah, type: boolean, default: true}
+      - {name: sedekahDesc, label: Deskripsi Sedekah (kosongkan untuk teks bawaan), type: text}
+      - {name: sedekahIcon, label: Ikon Sedekah (opsional), type: image}
+      - {name: wakafTampil, label: Tampilkan kategori Wakaf, type: boolean, default: true}
+      - {name: wakafDesc, label: Deskripsi Wakaf (kosongkan untuk teks bawaan), type: text}
+      - {name: wakafIcon, label: Ikon Wakaf (opsional), type: image}
+      - name: cards
+        label: Kartu program (gambar, judul, link Lynk)
+        type: object
+        list: true
+        fields:
+          - name: category
+            label: Kategori
+            type: select
+            options:
+              values: [Donasi, Zakat, Sedekah, Wakaf]
+          - {name: title, label: Judul kartu, type: string}
+          - {name: image, label: Gambar, type: image}
+          - {name: url, label: Link kampanye di Lynk, type: string}
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+  - name: profil
+    label: Profil
+    type: file
+    path: data/profil.json
+    format: json
+    fields:
+      - {name: title, label: Judul halaman, type: string}
+      - {name: intro, label: Kalimat pembuka (opsional), type: text}
+      - name: sections
+        label: Bagian profil
+        type: object
+        list: true
+        fields:
+          - {name: heading, label: Judul bagian, type: string}
+          - {name: text, label: Isi (pisahkan paragraf dengan baris kosong), type: text}
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+      - {name: linksTitle, label: Judul bagian tautan (contoh Hubungi kami), type: string}
+      - name: links
+        label: Tautan WhatsApp, Instagram, dll
+        type: object
+        list: true
+        fields:
+          - name: type
+            label: Jenis
+            type: select
+            options:
+              values: [WhatsApp, Instagram, Lainnya]
+          - {name: label, label: Teks tombol (opsional), type: string}
+          - {name: url, label: "Nomor WA (08xxx), @username Instagram, atau link lengkap", type: string}
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
   - name: kalkulator
     label: Kalkulator Zakat (harga, tautan, doa)
     type: file
@@ -318,6 +262,22 @@ content:
           - {name: tani, label: Zakat Pertanian, type: string}
           - {name: ternak, label: Zakat Peternakan, type: string}
           - {name: fitrah, label: Zakat Fitrah, type: string}
+      - name: aktif
+        label: Jenis zakat yang ditampilkan (matikan untuk menyembunyikan)
+        type: object
+        fields:
+          - {name: emas, label: Tampilkan Zakat Emas, type: boolean, default: true}
+          - {name: perak, label: Tampilkan Zakat Perak, type: boolean, default: true}
+          - {name: uang, label: Tampilkan Zakat Uang, type: boolean, default: true}
+          - {name: surat, label: Tampilkan Zakat Surat Berharga, type: boolean, default: true}
+          - {name: niaga, label: Tampilkan Zakat Perniagaan, type: boolean, default: true}
+          - {name: ikan, label: Tampilkan Zakat Perikanan, type: boolean, default: true}
+          - {name: tambang, label: Tampilkan Zakat Pertambangan, type: boolean, default: true}
+          - {name: perusahaan, label: Tampilkan Zakat Perusahaan, type: boolean, default: true}
+          - {name: hasil, label: Tampilkan Zakat Penghasilan, type: boolean, default: true}
+          - {name: tani, label: Tampilkan Zakat Pertanian, type: boolean, default: true}
+          - {name: ternak, label: Tampilkan Zakat Peternakan, type: boolean, default: true}
+          - {name: fitrah, label: Tampilkan Zakat Fitrah, type: boolean, default: true}
       - name: catatan
         label: Catatan di bawah kalkulator
         type: text
