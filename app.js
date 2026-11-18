@@ -21,8 +21,9 @@ function applyTheme(t) {
 try { var cached = localStorage.getItem("lazTheme"); if (cached) applyTheme(JSON.parse(cached)); } catch (e) {}
 function run(S) {
   var $ = function (s, r) { return (r || document).querySelector(s); };
-  S.news = (S.news || []).sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
-  S.stats = S.stats || [];
+  function on(x) { return x && x.tampil !== false; }
+  S.news = (S.news || []).filter(on).sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+  S.stats = (S.stats || []).filter(on);
   applyTheme(S.theme);
   try { localStorage.setItem("lazTheme", JSON.stringify(S.theme || {})); } catch (e) {}
   function slug(t) { return String(t || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
@@ -59,7 +60,7 @@ function run(S) {
     return /^https?:\/\//i.test(u) ? u : "https://" + u;
   }
   function socials(P) {
-    var items = (P.links || []).map(function (l) { return { l: l, u: linkUrl(l) }; }).filter(function (x) { return x.u; });
+    var items = (P.links || []).filter(on).map(function (l) { return { l: l, u: linkUrl(l) }; }).filter(function (x) { return x.u; });
     if (!items.length) return "";
     return '<div class="blk"><h2>' + esc(P.linksTitle || "Hubungi kami") + '</h2><div class="soc">' + items.map(function (x) {
       return '<a href="' + esc(x.u) + '" target="_blank" rel="noopener">' + (ICONS[x.l.type] || ICONS.Lainnya) + '<span>' + esc(x.l.label || x.l.type || "Tautan") + '</span></a>';
@@ -79,8 +80,8 @@ function run(S) {
       var p = /^https?:/i.test(u) ? new URL(u).pathname : String(u).split(/[?#]/)[0];
       return (p.split("/").pop() || "index").replace(/\.html$/, "") === cur;
     }
-    var items = menu.filter(function (m) { return m && m.label; }).map(function (m) {
-      var kids = (m.children || []).filter(function (c) { return c && c.label; });
+    var items = menu.filter(function (m) { return m && m.label && m.tampil !== false; }).map(function (m) {
+      var kids = (m.children || []).filter(function (c) { return c && c.label && c.tampil !== false; });
       if (kids.length) return '<li class="dd"><button type="button" aria-expanded="false">' + esc(m.label) + CHEV + '</button><ul class="sub">' +
         kids.map(function (c) { return '<li><a href="' + href(c.url) + '"' + ext(c.url) + '>' + esc(c.label) + '</a></li>'; }).join("") + '</ul></li>';
       return '<li><a href="' + href(m.url) + '"' + ext(m.url) + (isCur(m.url) ? ' aria-current="page"' : '') + '>' + esc(m.label) + '</a></li>';
@@ -88,13 +89,13 @@ function run(S) {
     $("#hdr").innerHTML = '<div class="wrap bar"><a class="brand" href="index.html">' + (S.logo ? '<img class="logo" src="' + S.logo + '" alt="' + (S.showName === false ? S.name : '') + '">' : '<span class="mark" aria-hidden="true"></span>') + (S.showName === false && S.logo ? '' : S.name) + '</a>' +
       '<nav id="nav" aria-label="Menu utama"><ul>' + items + '</ul></nav><a class="btn small" href="' + S.lynk + '" target="_blank" rel="noopener">Donasi</a>' +
       '<button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button></div>';
-    var ic = (P.links || []).map(function (l) {
+    var ic = (P.links || []).filter(on).map(function (l) {
       var u = linkUrl(l); return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener" aria-label="' + esc(l.label || l.type || "Tautan") + '">' + (ICONS[l.type] || ICONS.Lainnya) + '</a>' : "";
     }).join("");
     var F = S.footer || {};
     var fcopy = String(F.copyright || ("\u00a9 {tahun} " + S.name)).replace(/\{tahun\}/g, new Date().getFullYear());
     var desc = F.description || "Lembaga amil zakat. Donasi diproses melalui Lynk.";
-    var quick = (F.quick || []).filter(function (l) { return l && l.label && l.url; }).map(function (l) { return '<li><a href="' + href(l.url) + '"' + ext(l.url) + '>' + esc(l.label) + '</a></li>'; }).join("");
+    var quick = (F.quick || []).filter(function (l) { return l && l.label && l.url && l.tampil !== false; }).map(function (l) { return '<li><a href="' + href(l.url) + '"' + ext(l.url) + '>' + esc(l.label) + '</a></li>'; }).join("");
     var contact = [];
     if (F.address) contact.push('<li>' + esc(F.address) + '</li>');
     if (F.phone) contact.push('<li><a href="tel:' + esc(String(F.phone).replace(/[^\d+]/g, "")) + '">' + esc(F.phone) + '</a></li>');
@@ -118,9 +119,9 @@ function run(S) {
   var CATS = [["Donasi", "donasi"], ["Zakat", "zakat"], ["Sedekah", "sedekah"], ["Wakaf", "wakaf"]];
   var DEFDESC = { Donasi: "Ulurkan bantuan Anda untuk meringankan beban mereka yang membutuhkan.", Zakat: "Tunaikan zakat maal, zakat fitrah, dan zakat lainnya melalui lembaga kami.", Sedekah: "Sedekahkan sebagian harta Anda bagi mereka yang membutuhkan.", Wakaf: "Salurkan wakaf Anda untuk kemaslahatan umat yang terus mengalir." };
   var G = S.program || {};
-  var cats = CATS.map(function (c, i) {
+  var cats = CATS.filter(function (c) { return G[c[1] + "Tampil"] !== false; }).map(function (c, i) {
     return { title: c[0], id: c[1], n: ("0" + (i + 1)).slice(-2), desc: G[c[1] + "Desc"] || DEFDESC[c[0]], icon: G[c[1] + "Icon"] || "",
-      cards: (G.cards || []).filter(function (x) { return x && x.category === c[0] && x.title; }) };
+      cards: (G.cards || []).filter(function (x) { return x && x.category === c[0] && x.title && x.tampil !== false; }) };
   });
   if ($("#progHome")) {
     $("#progTitle").textContent = G.title || "Program Kami";
@@ -147,7 +148,7 @@ function run(S) {
   if ($("#profile")) {
     var P = S.profile || {};
     $("#profile").innerHTML = '<h1>' + esc(P.title || "Profil " + S.name) + '</h1>' + (P.intro ? '<p class="lead">' + esc(P.intro) + '</p>' : '') +
-      (P.sections || []).map(function (b) {
+      (P.sections || []).filter(on).map(function (b) {
         return '<div class="blk"><h2>' + esc(b.heading) + '</h2>' + toParas(b.text).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join("") + '</div>';
       }).join("") + socials(P);
     if (P.title) document.title = P.title;
@@ -198,4 +199,13 @@ function run(S) {
   }
   Array.prototype.forEach.call(document.querySelectorAll("[data-lynk]"), function (a) { a.href = S.lynk; });
 }
-fetch("data/site.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(run);
+function J(u) { return fetch(u, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
+Promise.all([J("data/site.json"), J("data/menu.json"), J("data/beranda.json"), J("data/berita.json"), J("data/program.json"), J("data/profil.json")]).then(function (a) {
+  var S = a[0] || {};
+  if (a[1]) { if (a[1].menu) S.menu = a[1].menu; if (a[1].footer) S.footer = a[1].footer; }
+  if (a[2] && a[2].stats) S.stats = a[2].stats;
+  if (a[3] && a[3].news) S.news = a[3].news;
+  if (a[4]) S.program = a[4];
+  if (a[5]) S.profile = a[5];
+  run(S);
+});

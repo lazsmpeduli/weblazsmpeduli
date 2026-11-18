@@ -121,7 +121,8 @@ function ternak(m,v){
   doa.innerHTML=w?'<div class="doa">'+DOA.map(function(d){return '<h3>'+d.t+'</h3><div class="ar" lang="ar">'+d.ar+'</div><p class="lat">'+d.lat+'</p><p class="kart">'+d.art+'</p>'}).join("")+'</div>':"";
 }
 var DOAF=[{t:"Niat zakat fitrah untuk diri sendiri",ar:"نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنْ نَفْسِي فَرْضًا لِلَّهِ تَعَالَى",lat:"Nawaitu an ukhrija zakātal-fitri ‘an nafsī fardhan lillāhi ta‘ālā.",art:"Aku berniat mengeluarkan zakat fitrah untuk diriku, fardu karena Allah Ta‘ala."},{t:"Niat zakat fitrah untuk keluarga",ar:"نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنِّي وَعَنْ جَمِيعِ مَا يَلْزَمُنِي نَفَقَاتُهُمْ شَرْعًا فَرْضًا لِلَّهِ تَعَالَى",lat:"Nawaitu an ukhrija zakātal-fitri ‘annī wa ‘an jamī‘i mā yalzamunī nafaqātuhum syar‘an fardhan lillāhi ta‘ālā.",art:"Aku berniat mengeluarkan zakat fitrah untuk diriku dan semua orang yang nafkahnya menjadi tanggunganku, fardu karena Allah Ta‘ala."},DOA[1]];
-var curT="emas",curM="m";
+Object.keys(TYPES).forEach(function(k){if(D.aktif&&D.aktif[k]===false)delete TYPES[k]});
+var curT=Object.keys(TYPES)[0]||"",curM="m";
 function normDoa(a){return (a||[]).filter(function(x){return x&&x.arab}).map(function(x){return{t:x.judul||"",ar:x.arab,lat:x.latin||"",art:x.arti||""}})}
 if(normDoa(D.doaMaal).length)DOA=normDoa(D.doaMaal);
 if(normDoa(D.doaFitrah).length)DOAF=normDoa(D.doaFitrah);
@@ -203,10 +204,12 @@ function calc(){updatePay();
   document.getElementById("doa").innerHTML=wajib?'<div class="doa">'+DOA.map(function(d){return '<h3>'+d.t+'</h3><div class="ar" lang="ar">'+d.ar+'</div><p class="lat">'+d.lat+'</p><p class="kart">'+d.art+'</p>'}).join("")+'</div>':"";
 }
 var gr=document.getElementById("groups");
-Object.keys(GROUPS).forEach(function(k){var b=document.createElement("button");b.className="tab g";b.type="button";b.dataset.k=k;b.setAttribute("role","tab");b.textContent=GROUPS[k];b.onclick=function(){curT=Object.keys(TYPES).filter(function(x){return TYPES[x].g===k})[0];curM="m";build()};gr.appendChild(b)});
+Object.keys(GROUPS).filter(function(g){return Object.keys(TYPES).some(function(x){return TYPES[x].g===g})}).forEach(function(k){var b=document.createElement("button");b.className="tab g";b.type="button";b.dataset.k=k;b.setAttribute("role","tab");b.textContent=GROUPS[k];b.onclick=function(){curT=Object.keys(TYPES).filter(function(x){return TYPES[x].g===k})[0];curM="m";build()};gr.appendChild(b)});
 document.getElementById("reset").onclick=build;
 var hs=location.hash.replace("#","");
-if(GROUPS[hs]){curT=Object.keys(TYPES).filter(function(x){return TYPES[x].g===hs})[0];curM="m"}
+var hf=Object.keys(TYPES).filter(function(x){return TYPES[x].g===hs})[0];
+if(GROUPS[hs]&&hf){curT=hf;curM="m"}
+if(!Object.keys(TYPES).length){document.querySelector("#kz .kcard").innerHTML='<p class="empty">Kalkulator sedang tidak tersedia.</p>';return}
 build();
   }
 })();

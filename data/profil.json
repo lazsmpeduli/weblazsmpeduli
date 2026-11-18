@@ -1,0 +1,36 @@
+{
+  "title": "Profil LAZ SM Peduli",
+  "intro": "",
+  "sections": [
+    {
+      "heading": "Tentang kami",
+      "text": "Segera hadir.",
+      "tampil": true
+    },
+    {
+      "heading": "Visi dan misi",
+      "text": "VIsi: Menjadi Lembaga Amil yang amanah, profesional, akuntabel dan transparan guna mewujudkan peningkatan ketaqwaan dan kesejahteraan umat.\n\nMisi:\n\na. Melakukan pengelolaan ZIS DSKL sesuai ketentuan syar’i dan regulasi (good amil gavernance).\n\nb. Mengoptimalkan penghimpunan ZIS DSKL dengan membangun ekosisten dakwah dan \nkemitraan strategis dengan seluruh pemangku kepentingan.\n\nc. Pendistribusian dan pendayagunaan ZIS DSL tepat sasaran, tepat waktu dan tepat manfaat.\n\nd. Mengembangkan program pemberdayaan bidang dakwah, ekonomi, pendidikan dan kesehatan berbasis pesantren, masjid/mushola dan lembaga pendidikan.\n",
+      "tampil": true
+    },
+    {
+      "heading": "Tim",
+      "text": "1. Pembina\n\n\n2. Pengawas\n\na. Pengawas Manajemen\n\nb. Pengawas Syariah\n\nc. Satuan Audit Internal\n\n\n3. Pelaksana\n\na. Direktur\n\nb. Wakil Direktur\n\nc. Divisi Bidang Perencanaan, Keuangan, Pelaporan, SDA dan Tata Usaha\n\nd. Divisi Bidang Pungutan dan Digital Marketing\n\ne. Divisi Bidang Pentasharufan, Humas dan Aset.",
+      "tampil": true
+    }
+  ],
+  "linksTitle": "Hubungi kami",
+  "links": [
+    {
+      "type": "WhatsApp",
+      "label": "",
+      "url": "08214154441",
+      "tampil": true
+    },
+    {
+      "type": "Instagram",
+      "label": "",
+      "url": "https://www.instagram.com/lazsmpeduli/",
+      "tampil": true
+    }
+  ]
+}

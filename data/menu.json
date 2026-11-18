@@ -1,0 +1,36 @@
+{
+  "menu": [
+    {
+      "label": "Program",
+      "url": "program.html",
+      "tampil": true
+    },
+    {
+      "label": "Kalkulator Zakat",
+      "url": "kalkulator.html",
+      "tampil": true
+    },
+    {
+      "label": "Kabar",
+      "url": "news.html",
+      "tampil": true
+    },
+    {
+      "label": "Profil",
+      "url": "about.html",
+      "tampil": true
+    }
+  ],
+  "footer": {
+    "description": "",
+    "quickTitle": "Tautan",
+    "donateText": "Donasi sekarang",
+    "quick": [],
+    "contactTitle": "Kontak",
+    "address": "",
+    "phone": "08214154441",
+    "email": "smpeduli@gmail.com",
+    "hours": "",
+    "copyright": ""
+  }
+}

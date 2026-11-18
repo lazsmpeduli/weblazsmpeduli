@@ -1,0 +1,22 @@
+{
+  "stats": [
+    {
+      "label": "Total donasi terkumpul",
+      "value": 8086502,
+      "money": true,
+      "tampil": true
+    },
+    {
+      "label": "Donasi tersalurkan",
+      "value": 7551334,
+      "money": true,
+      "tampil": true
+    },
+    {
+      "label": "Jumlah donatur",
+      "value": 19,
+      "money": false,
+      "tampil": true
+    }
+  ]
+}
