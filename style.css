@@ -118,3 +118,6 @@ nav a[aria-current]{box-shadow:none;color:var(--leaf)}nav .sub{position:static;b
 #kz .kart{margin:4px 0 14px;font-size:.95rem}
 #kz .knisab,#kz .kfoot{color:var(--mut);font-size:.88rem;max-width:860px;margin:18px 0 0}
 .zlink{display:inline-block;margin-top:10px;font-weight:700;color:var(--leaf)}
+
+/* Kartu program: gambar persegi 1:1 seperti di Lynk */
+.pgrid .card img,.pgrid .card .ph{aspect-ratio:1/1}
