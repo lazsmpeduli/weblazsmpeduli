@@ -16,6 +16,11 @@
       "tampil": true
     },
     {
+      "label": "Artikel",
+      "url": "artikel.html",
+      "tampil": true
+    },
+    {
       "label": "Profil",
       "url": "about.html",
       "tampil": true
