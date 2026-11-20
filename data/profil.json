@@ -1,10 +1,19 @@
 {
   "title": "Profil LAZ SM Peduli",
-  "intro": "",
   "sections": [
     {
       "heading": "Tentang kami",
-      "text": "Segera hadir.",
+      "text": "LAZ SM Peduli adalah lembaga amil zakat resmi yang dibentuk oleh Yayasan Pendidikan Islam Pesantren Sabilil Muttaqien (YPI PSM Banaran), Magetan.\n\nKami hadir sebagai jembatan antara Anda yang ingin berbagi dan mereka yang membutuhkan. Zakat, infak, sedekah, dan dana sosial keagamaan Anda kami kelola dengan amanah, profesional, akuntabel, dan transparan, dari perencanaan sampai pelaporan.\n\nSetiap titipan Anda kami jaga, kami salurkan tepat sasaran, dan kami pertanggungjawabkan.",
+      "tampil": true
+    },
+    {
+      "heading": "Legalitas Kami",
+      "text": "LAZ SM Peduli berdiri berdasarkan Undang-Undang Nomor 23 Tahun 2011 tentang Pengelolaan Zakat, dan telah mengantongi izin operasional dari Kepala Kantor Wilayah Kementerian Agama Provinsi Jawa Timur.\n\nNomor izin operasional: 465/2026\nTanggal: 1 Oktober 2026 (19 Rabiul Tsani 1448 H)",
+      "tampil": true
+    },
+    {
+      "heading": "Apa yang kami kelola",
+      "text": "Kami mengelola dana zakat (zakat maal dan zakat fitrah), infak, dan sedekah, serta dana sosial keagamaan lainnya, yaitu:\n\na. Fidyah dan kafarat\n\nb. Kurban\n\nc. Harta nazar\n\nd. Harta amanah atau titipan\n\ne. Harta pusaka yang tidak memiliki ahli waris\n\nf. Hibah\n\ng. Harta sitaan",
       "tampil": true
     },
     {
@@ -13,7 +22,7 @@
       "tampil": true
     },
     {
-      "heading": "Tim",
+      "heading": "Struktur Lembaga",
       "text": "1. Pembina\n\n\n2. Pengawas\n\na. Pengawas Manajemen\n\nb. Pengawas Syariah\n\nc. Satuan Audit Internal\n\n\n3. Pelaksana\n\na. Direktur\n\nb. Wakil Direktur\n\nc. Divisi Bidang Perencanaan, Keuangan, Pelaporan, SDA dan Tata Usaha\n\nd. Divisi Bidang Pungutan dan Digital Marketing\n\ne. Divisi Bidang Pentasharufan, Humas dan Aset.",
       "tampil": true
     }
@@ -22,13 +31,11 @@
   "links": [
     {
       "type": "WhatsApp",
-      "label": "",
       "url": "08214154441",
       "tampil": true
     },
     {
       "type": "Instagram",
-      "label": "",
       "url": "https://www.instagram.com/lazsmpeduli/",
       "tampil": true
     }
