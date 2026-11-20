@@ -10,6 +10,8 @@
       "title": "Zakat Maal",
       "image": "/img/Zakat Maal.jpeg",
       "url": "https://lynk.id/lazsmpeduli/556mn7gx8m2p",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     },
     {
@@ -17,6 +19,8 @@
       "title": "Zakat Usaha",
       "image": "/img/Zakat Usaha.jpeg",
       "url": "https://lynk.id/lazsmpeduli/vegxn1z5l0r6",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     },
     {
@@ -24,6 +28,8 @@
       "title": "Zakat Penghasilan",
       "image": "/img/Zakat Penghasilan.jpeg",
       "url": "https://lynk.id/lazsmpeduli/1mxzgj34m7l1",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     },
     {
@@ -31,6 +37,8 @@
       "title": "Zakat Pertanian",
       "image": "/img/Zakat Pertanian.jpeg",
       "url": "https://lynk.id/lazsmpeduli/pq7np02p0r2q",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     },
     {
@@ -38,6 +46,8 @@
       "title": "Beasiswa Penghafal Qur'an",
       "image": "/img/Beasiswa Penghafal Quran.jpeg",
       "url": "https://lynk.id/lazsmpeduli/58yjd0ywxd5w",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     },
     {
@@ -45,6 +55,10 @@
       "title": "Sedekah Qur'an",
       "image": "/img/Sedekah Al Quran.jpeg",
       "url": "https://lynk.id/lazsmpeduli/y48qmx4evq0n",
+      "tracker": true,
+      "terkumpul": 500000,
+      "target": 10000000,
+      "slide": true,
       "tampil": true
     },
     {
@@ -52,6 +66,8 @@
       "title": "Sedekah Beras Santri",
       "image": "/img/Sedekah Beras Santri.jpeg",
       "url": "https://lynk.id/lazsmpeduli/y58jpe26me14",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     },
     {
@@ -59,6 +75,8 @@
       "title": "Sedekah Perlengkapan Tidur",
       "image": "/img/Sedekah perlengkapan tidur.jpeg",
       "url": "https://lynk.id/lazsmpeduli/6ywp3rd9y6p9",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     },
     {
@@ -66,6 +84,8 @@
       "title": "Sedekah Fasilitas Pondok",
       "image": "/img/Sedekah Fasilitas.jpeg",
       "url": "https://lynk.id/lazsmpeduli/1lw7zjk21g1v",
+      "tracker": false,
+      "slide": false,
       "tampil": true
     }
   ]
