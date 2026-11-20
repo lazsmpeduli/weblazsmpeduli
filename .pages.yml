@@ -54,6 +54,11 @@ content:
             type: select
             options:
               values: [Standar, Lebar, Sangat lebar]
+          - name: aksen
+            label: Pita hijau di atas halaman dalam (Program, Kalkulator, Kabar, Artikel, Profil)
+            type: select
+            options:
+              values: [Hijau tua penuh, Mati]
           - name: forest
             label: "Warna utama gelap (opsional, contoh #0f3d2a)"
             type: string
@@ -116,7 +121,7 @@ content:
           - {name: hours, label: Jam layanan (contoh Senin-Jumat 08.00-16.00), type: string}
           - {name: copyright, label: "Tulisan hak cipta (pakai {tahun} agar tahun otomatis)", type: string}
   - name: beranda
-    label: Beranda (angka slideshow)
+    label: Beranda (angka donasi)
     type: file
     path: data/beranda.json
     format: json
@@ -129,6 +134,77 @@ content:
           - {name: label, label: Judul angka, type: string}
           - {name: value, label: Nilai (angka saja tanpa titik), type: number}
           - {name: money, label: Tampilkan sebagai Rupiah, type: boolean}
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+  - name: slideshow
+    label: Slideshow Beranda dan Tombol Donasi melayang
+    type: file
+    path: data/slideshow.json
+    format: json
+    fields:
+      - {name: kecepatan, label: "Lama tiap slide (detik)", type: number}
+      - {name: gerakOtomatis, label: Slideshow berganti otomatis, type: boolean, default: true}
+      - name: ukuranAngka
+        label: Ukuran angka donasi (angkanya diatur di entri Beranda)
+        type: select
+        options:
+          values: [Kecil, Sedang, Besar, Sangat besar]
+      - name: slides
+        label: Slide manual (slide artikel muncul otomatis dari entri Artikel)
+        type: object
+        list: true
+        fields:
+          - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+          - name: jenis
+            label: Jenis slide
+            type: select
+            options:
+              values: [Biasa, Campaign]
+          - {name: eyebrow, label: Tulisan kecil di atas judul, type: string}
+          - {name: judul, label: Judul, type: string}
+          - {name: kalimat, label: Kalimat, type: text}
+          - {name: tombol, label: Tulisan tombol, type: string}
+          - {name: link, label: "Link tombol (kosongkan = link Donasi umum). Halaman sendiri cukup ditulis seperti news.html", type: string}
+          - {name: gambar, label: Gambar komputer (kosongkan = latar hijau), type: image}
+          - {name: gambarHp, label: Gambar HP (opsional), type: image}
+          - {name: terkumpul, label: Terkumpul (Rp, hanya untuk jenis Campaign), type: number}
+          - {name: target, label: Target (Rp, hanya untuk jenis Campaign), type: number}
+      - name: fab
+        label: Tombol Donasi melayang
+        type: object
+        fields:
+          - {name: tampil, label: Tampilkan tombol (matikan untuk menyembunyikan), type: boolean, default: true}
+          - name: ikon
+            label: Gambar ikon
+            type: select
+            options:
+              values: [Hati, Tangan memberi, Koin Rp, Tanpa gambar]
+          - {name: tulisanTampil, label: Tampilkan tulisan di tombol, type: boolean, default: true}
+          - {name: tulisan, label: Tulisan di tombol (contoh Donasi), type: string}
+          - name: posisi
+            label: Posisi
+            type: select
+            options:
+              values: [Kanan bawah, Kiri bawah]
+          - {name: link, label: "Link tombol (kosongkan = link Donasi umum)", type: string}
+  - name: artikel
+    label: Artikel
+    type: file
+    path: data/artikel.json
+    format: json
+    fields:
+      - {name: title, label: Judul halaman Artikel, type: string}
+      - {name: intro, label: Kalimat pengantar halaman Artikel, type: text}
+      - name: articles
+        label: Daftar artikel
+        type: object
+        list: true
+        fields:
+          - {name: title, label: Judul, type: string}
+          - {name: date, label: Tanggal, type: date}
+          - {name: summary, label: Ringkasan singkat (tampil di kartu dan slide), type: text}
+          - {name: image, label: Gambar, type: image}
+          - {name: body, label: "Isi lengkap (pisahkan paragraf dengan baris kosong; awali baris dengan ## untuk sub judul)", type: text}
+          - {name: tampilSlide, label: Tampilkan di slideshow beranda, type: boolean, default: false}
           - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
   - name: berita
     label: Berita (Kabar)
@@ -182,6 +258,11 @@ content:
           - {name: title, label: Judul kartu, type: string}
           - {name: image, label: Gambar, type: image}
           - {name: url, label: Link kampanye di Lynk, type: string}
+          - {name: tracker, label: Tampilkan tracker goal (bar progres donasi), type: boolean, default: false}
+          - {name: terkumpul, label: Terkumpul (Rp, dipakai jika tracker menyala), type: number}
+          - {name: target, label: Target (Rp, dipakai jika tracker menyala), type: number}
+          - {name: slide, label: Tampilkan di slideshow beranda (tracker ikut tampil jika menyala), type: boolean, default: false}
+          - {name: kalimatSlide, label: Kalimat untuk slide (hanya dipakai di slideshow), type: text}
           - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
   - name: profil
     label: Profil
