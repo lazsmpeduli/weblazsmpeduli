@@ -1,0 +1,15 @@
+{
+  "title": "Artikel",
+  "intro": "Bacaan seputar zakat, infak, sedekah, dan wakaf.",
+  "articles": [
+    {
+      "title": "Wajibnya Zakat Fidyah",
+      "date": "2026-11-20",
+      "summary": "Contoh artikel. Ganti ringkasan ini dengan isi Anda.",
+      "image": "",
+      "body": "Ini hanya contoh. Ganti dengan isi artikel Anda.\n\n## Contoh sub judul\n\nParagraf berikutnya ditulis setelah satu baris kosong.",
+      "tampilSlide": false,
+      "tampil": false
+    }
+  ]
+}

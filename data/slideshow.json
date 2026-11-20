@@ -1,0 +1,54 @@
+{
+  "kecepatan": 6.5,
+  "gerakOtomatis": true,
+  "ukuranAngka": "Kecil",
+  "slides": [
+    {
+      "tampil": true,
+      "jenis": "Biasa",
+      "eyebrow": "Lembaga Amil Zakat resmi",
+      "judul": "Kebaikan Anda sampai ke yang membutuhkan.",
+      "kalimat": "Zakat, infak, dan sedekah Anda kami kelola dengan amanah, dari perencanaan sampai pelaporan.",
+      "tombol": "Donasi sekarang",
+      "link": "",
+      "gambar": "",
+      "gambarHp": "",
+      "terkumpul": 0,
+      "target": 0
+    },
+    {
+      "tampil": true,
+      "jenis": "Biasa",
+      "eyebrow": "Kabar terbaru",
+      "judul": "Kemenag Jatim serahkan SK izin operasional LAZ kami",
+      "kalimat": "Penyerahan berlangsung di PSM Banaran, Magetan.",
+      "tombol": "Baca kabar",
+      "link": "news.html",
+      "gambar": "",
+      "gambarHp": "",
+      "terkumpul": 0,
+      "target": 0
+    },
+    {
+      "tampil": false,
+      "jenis": "Campaign",
+      "eyebrow": "Campaign aktif",
+      "judul": "Contoh: Sedekah Beras Santri",
+      "kalimat": "Ganti dengan kalimat campaign Anda, lalu nyalakan saklar Tampilkan.",
+      "tombol": "Ikut berdonasi",
+      "link": "",
+      "gambar": "",
+      "gambarHp": "",
+      "terkumpul": 0,
+      "target": 30000000
+    }
+  ],
+  "fab": {
+    "tampil": true,
+    "ikon": "Hati",
+    "tulisanTampil": true,
+    "tulisan": "Donasi",
+    "posisi": "Kanan bawah",
+    "link": ""
+  }
+}
