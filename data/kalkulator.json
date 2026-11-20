@@ -1,28 +1,26 @@
 {
   "judul": "Kalkulator Zakat",
-  "intro": "Hitung zakat Anda, lalu tunaikan melalui kami. Hasil hitungan berupa perkiraan.",
+  "intro": "Hitung zakat Anda, lalu tunaikan melalui kami.",
   "hargaEmas": 2000000,
   "hargaPerak": 25000,
-  "hargaBeras": 15000,
   "hargaGabah": 4500,
-  "tanggalHarga": "",
+  "hargaBeras": 15000,
   "tombol": "Tunaikan Zakat",
-  "linkUmum": "",
-  "links": {
-    "emas": "",
-    "perak": "",
-    "uang": "",
-    "surat": "",
-    "niaga": "",
-    "ikan": "",
-    "tambang": "",
-    "perusahaan": "",
-    "hasil": "",
-    "tani": "",
-    "ternak": "",
-    "fitrah": ""
+  "aktif": {
+    "emas": true,
+    "perak": true,
+    "uang": true,
+    "surat": true,
+    "niaga": true,
+    "ikan": true,
+    "tambang": true,
+    "perusahaan": true,
+    "hasil": true,
+    "tani": true,
+    "ternak": true,
+    "fitrah": true
   },
-  "catatan": "Hasil ini hanya perkiraan. Untuk kepastian hukum zakat Anda, tanyakan kepada amil atau ulama.",
+  "catatan": "Silahkan klik salin jumlah zakat untuk salin nominal zakat Anda. Kemudian tunaikan melalui tombol Tunaikan Zakat",
   "doaMaal": [
     {
       "judul": "Niat zakat maal",
@@ -56,19 +54,5 @@
       "latin": "Rabbanā taqabbal minnā innaka antas-samī‘ul-‘alīm.",
       "arti": "Ya Tuhan kami, terimalah dari kami (amal kami). Sesungguhnya Engkaulah Yang Maha Mendengar lagi Maha Mengetahui."
     }
-  ],
-  "aktif": {
-    "emas": true,
-    "perak": true,
-    "uang": true,
-    "surat": true,
-    "niaga": true,
-    "ikan": true,
-    "tambang": true,
-    "perusahaan": true,
-    "hasil": true,
-    "tani": true,
-    "ternak": true,
-    "fitrah": true
-  }
+  ]
 }
