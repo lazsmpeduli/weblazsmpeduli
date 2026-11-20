@@ -1,5 +1,5 @@
 {
-  "kecepatan": 6.5,
+  "kecepatan": 5,
   "gerakOtomatis": true,
   "ukuranAngka": "Kecil",
   "slides": [
@@ -10,9 +10,7 @@
       "judul": "Kebaikan Anda sampai ke yang membutuhkan.",
       "kalimat": "Zakat, infak, dan sedekah Anda kami kelola dengan amanah, dari perencanaan sampai pelaporan.",
       "tombol": "Donasi sekarang",
-      "link": "",
-      "gambar": "",
-      "gambarHp": "",
+      "gambarHp": "/img/berandaslideshow.jpg",
       "terkumpul": 0,
       "target": 0
     },
@@ -24,8 +22,7 @@
       "kalimat": "Penyerahan berlangsung di PSM Banaran, Magetan.",
       "tombol": "Baca kabar",
       "link": "news.html",
-      "gambar": "",
-      "gambarHp": "",
+      "gambar": "/img/beritaslideshow.jpg",
       "terkumpul": 0,
       "target": 0
     },
@@ -36,9 +33,6 @@
       "judul": "Contoh: Sedekah Beras Santri",
       "kalimat": "Ganti dengan kalimat campaign Anda, lalu nyalakan saklar Tampilkan.",
       "tombol": "Ikut berdonasi",
-      "link": "",
-      "gambar": "",
-      "gambarHp": "",
       "terkumpul": 0,
       "target": 30000000
     }
@@ -48,7 +42,6 @@
     "ikon": "Hati",
     "tulisanTampil": true,
     "tulisan": "Donasi",
-    "posisi": "Kanan bawah",
-    "link": ""
+    "posisi": "Kanan bawah"
   }
 }
