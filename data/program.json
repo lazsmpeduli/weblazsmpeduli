@@ -55,10 +55,11 @@
       "title": "Sedekah Qur'an",
       "image": "/img/Sedekah Al Quran.jpeg",
       "url": "https://lynk.id/lazsmpeduli/y48qmx4evq0n",
-      "tracker": true,
+      "tracker": false,
       "terkumpul": 500000,
       "target": 10000000,
       "slide": true,
+      "kalimatSlide": "Mari hadirkan cahaya kebaikan dengan berbagi Al-Qur’an. Setiap huruf yang dibaca menjadi ladang pahala yang terus mengalir.",
       "tampil": true
     },
     {
