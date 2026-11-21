@@ -54,6 +54,11 @@ content:
             type: select
             options:
               values: [Standar, Lebar, Sangat lebar]
+          - name: header
+            label: Header (menu paling atas)
+            type: select
+            options:
+              values: [Sembunyi saat digulir ke bawah, Selalu tampil]
           - name: aksen
             label: Pita hijau di atas halaman dalam (Program, Kalkulator, Kabar, Artikel, Profil)
             type: select
