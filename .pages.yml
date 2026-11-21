@@ -205,6 +205,7 @@ content:
           - {name: image, label: Gambar, type: image}
           - {name: body, label: "Isi lengkap (pisahkan paragraf dengan baris kosong; awali baris dengan ## untuk sub judul)", type: text}
           - {name: tampilSlide, label: Tampilkan di slideshow beranda, type: boolean, default: false}
+          - {name: gambarSlide, label: "Gambar slide (foto lebar, OPSIONAL. Kosongkan = slide memakai Gambar sebagai poster kotak)", type: image}
           - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
   - name: berita
     label: Berita (Kabar)
@@ -263,6 +264,7 @@ content:
           - {name: target, label: Target (Rp, dipakai jika tracker menyala), type: number}
           - {name: slide, label: Tampilkan di slideshow beranda (tracker ikut tampil jika menyala), type: boolean, default: false}
           - {name: kalimatSlide, label: Kalimat untuk slide (hanya dipakai di slideshow), type: text}
+          - {name: gambarSlide, label: "Gambar slide (foto lebar, OPSIONAL. Kosongkan = slide memakai Gambar kartu sebagai poster kotak)", type: image}
           - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
   - name: profil
     label: Profil
