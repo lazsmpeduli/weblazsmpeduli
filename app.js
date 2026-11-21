@@ -184,10 +184,10 @@ function run(S) {
     });
     (G.cards || []).filter(function (x) { return x && x.title && x.tampil !== false && x.slide; }).forEach(function (x) {
       var tg = +x.target || 0;
-      out.push({ eb: x.category, h: x.title, p: x.kalimatSlide, btn: "Ikut berdonasi", href: x.url || S.lynk, img: x.image, goal: x.tracker && tg > 0 ? { kum: +x.terkumpul || 0, tar: tg } : null });
+      out.push({ eb: x.category, h: x.title, p: x.kalimatSlide, btn: "Ikut berdonasi", href: x.url || S.lynk, img: x.gambarSlide, pic: x.image, goal: x.tracker && tg > 0 ? { kum: +x.terkumpul || 0, tar: tg } : null });
     });
     S.arts.filter(function (a) { return a.tampilSlide; }).forEach(function (a) {
-      out.push({ eb: "Artikel", h: a.title, p: a.summary, btn: "Baca artikel", href: "artikel.html?id=" + encodeURIComponent(idOf(a)), img: a.image });
+      out.push({ eb: "Artikel", h: a.title, p: a.summary, btn: "Baca artikel", href: "artikel.html?id=" + encodeURIComponent(idOf(a)), img: a.gambarSlide, pic: a.image });
     });
     if (!out.length) out.push({ eb: "Lembaga Amil Zakat resmi", h: "Kebaikan Anda sampai ke yang membutuhkan.", p: "LAZ SM Peduli menyalurkan donasi dengan amanah. Setiap kegiatan kami laporkan di halaman ini.", btn: "Donasi lewat Lynk", href: S.lynk });
     return out;
@@ -198,11 +198,12 @@ function run(S) {
     hs.style.setProperty("--dur", DUR + "ms");
     hsBox.innerHTML = L.map(function (x, n) {
       var im = x.img ? '<picture>' + (x.imgHp ? '<source media="(max-width:640px)" srcset="' + esc(x.imgHp) + '">' : '') + '<img src="' + esc(x.img) + '" alt=""' + (n ? ' loading="lazy"' : '') + '></picture>' : '';
+      var pic = !x.img && x.pic ? '<div class="hs-pic"><img src="' + esc(x.pic) + '" alt=""' + (n ? ' loading="lazy"' : '') + '></div>' : '';
       var pct = x.goal && x.goal.tar > 0 ? Math.min(100, x.goal.kum / x.goal.tar * 100) : 0;
-      return '<article class="hs-slide g' + (n % 4) + (x.img ? ' has-img' : '') + '" role="group" aria-roledescription="slide" aria-label="' + (n + 1) + ' dari ' + L.length + '"><div class="hs-bg">' + im + '</div><div class="hs-shade"></div>' +
+      return '<article class="hs-slide g' + (n % 4) + (x.img ? ' has-img' : '') + (pic ? ' has-pic' : '') + '" role="group" aria-roledescription="slide" aria-label="' + (n + 1) + ' dari ' + L.length + '"><div class="hs-bg">' + im + '</div><div class="hs-shade"></div>' +
         '<div class="hs-copy">' + (x.eb ? '<span class="hs-eb">' + esc(x.eb) + '</span>' : '') + '<h2>' + esc(x.h) + '</h2>' + (x.p ? '<p>' + esc(x.p) + '</p>' : '') +
         (x.goal ? '<div class="hs-goal"><div class="t"><span><b>' + fmt(x.goal.kum, true) + '</b> terkumpul</span><span>target ' + fmt(x.goal.tar, true) + '</span></div><div class="bar"><i style="width:' + pct + '%"></i></div></div>' : '') +
-        '<a class="hs-btn" href="' + href(x.href) + '"' + ext(x.href) + '>' + esc(x.btn) + '</a></div></article>';
+        '<a class="hs-btn" href="' + href(x.href) + '"' + ext(x.href) + '>' + esc(x.btn) + '</a></div>' + pic + '</article>';
     }).join("");
     hsDots.innerHTML = L.map(function (_, n) { return '<button type="button" aria-label="Slide ' + (n + 1) + '"><i></i></button>'; }).join("");
     var sl = [].slice.call(hsBox.children), dt = [].slice.call(hsDots.children);
