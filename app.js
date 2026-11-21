@@ -141,7 +141,7 @@ function run(S) {
       return x.url ? '<a class="card" href="' + href(x.url) + '"' + ext(x.url) + '>' + inner + '</a>' : '<div class="card">' + inner + '</div>';
     }
     $("#progPage").innerHTML = '<h1>' + esc(G.title || "Program Kami") + '</h1>' + (G.intro ? '<p class="lead">' + esc(G.intro) + '</p>' : '') +
-      '<nav class="chips" aria-label="Kategori program">' + cats.map(function (c) { return '<a href="#' + c.id + '">' + c.title + '</a>'; }).join("") + '</nav>' +
+      '<div class="chips" role="navigation" aria-label="Kategori program">' + cats.map(function (c) { return '<a href="#' + c.id + '">' + c.title + '</a>'; }).join("") + '</div>' +
       cats.map(function (c) {
         return '<section class="psec" id="' + c.id + '"><h2>' + c.title + '</h2><p class="pdesc2">' + esc(c.desc) + '</p><div class="grid pgrid">' +
           (c.cards.length ? c.cards.map(pcard).join("") : '<p class="empty">Belum ada program di kategori ini.</p>') + '</div>' +
@@ -296,6 +296,22 @@ function run(S) {
   if ($("main.page") && !band()) {
     var mo = new MutationObserver(function () { if (band()) mo.disconnect(); });
     mo.observe($("main.page"), { childList: true, subtree: true });
+  }
+
+  /* ===== Header pintar: sembunyi saat digulir ke bawah, muncul lagi begitu digulir naik sedikit ===== */
+  var HD = document.querySelector("header");
+  if (HD && (S.theme || {}).header !== "Selalu tampil") {
+    var lastY = window.pageYOffset, tick = false;
+    var upd = function () {
+      tick = false;
+      var y = Math.max(0, window.pageYOffset), d = y - lastY;
+      if (HD.classList.contains("menu-open") || HD.contains(document.activeElement)) { HD.classList.remove("hide"); lastY = y; return; }
+      if (y < HD.offsetHeight + 20) HD.classList.remove("hide");
+      else if (d > 6) HD.classList.add("hide");
+      else if (d < -6) HD.classList.remove("hide");
+      if (Math.abs(d) > 6) lastY = y;
+    };
+    window.addEventListener("scroll", function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
   }
 
   /* ===== Halaman Artikel ===== */

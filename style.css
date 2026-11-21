@@ -214,3 +214,8 @@ nav a[aria-current]{box-shadow:none;color:var(--leaf)}nav .sub{position:static;b
   .hs-slide.has-pic .hs-copy{max-width:none;padding-top:14px}
   .hs-pic{position:static;transform:none;order:-1;width:min(60%,210px);margin:24px auto 0}
 }
+
+/* Header pintar */
+header{transition:transform .25s ease}
+header.hide{transform:translateY(-100%)}
+@media(prefers-reduced-motion:reduce){header{transition:none}}
