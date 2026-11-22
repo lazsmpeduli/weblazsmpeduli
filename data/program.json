@@ -1,6 +1,7 @@
 {
   "title": "Program Kami",
   "donasiTampil": true,
+  "donasiIcon": "/img/Donasi.png",
   "zakatTampil": true,
   "sedekahTampil": true,
   "wakafTampil": true,
