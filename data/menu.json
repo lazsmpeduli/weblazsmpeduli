@@ -29,6 +29,13 @@
   "footer": {
     "quickTitle": "Tautan",
     "donateText": "Donasi sekarang",
+    "quick": [
+      {
+        "label": "Pondok YPI PSM Banaran",
+        "url": "https://ponpesbanaran.sch.id/",
+        "tampil": true
+      }
+    ],
     "contactTitle": "Kontak",
     "address": "Dsn. Banaran RT.17 RW.03 Desa Kerik, Kec. Takeran, Kab. Magetan, Jawa Timur",
     "phone": "08214154441",
