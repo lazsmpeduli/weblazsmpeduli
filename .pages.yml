@@ -297,9 +297,9 @@ content:
             label: Jenis
             type: select
             options:
-              values: [WhatsApp, Instagram, Lainnya]
+              values: [WhatsApp, Instagram, Facebook, Lainnya]
           - {name: label, label: Teks tombol (opsional), type: string}
-          - {name: url, label: "Nomor WA (08xxx), @username Instagram, atau link lengkap", type: string}
+          - {name: url, label: "Nomor WA (08xxx), @username Instagram, nama halaman Facebook, atau link lengkap (contoh https://facebook.com/lazsmpeduli)", type: string}
           - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
   - name: kalkulator
     label: Kalkulator Zakat (harga, tautan, doa)
