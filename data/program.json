@@ -3,8 +3,11 @@
   "donasiTampil": true,
   "donasiIcon": "/img/Donasi.png",
   "zakatTampil": true,
+  "zakatIcon": "/img/Zakat.png",
   "sedekahTampil": true,
+  "sedekahIcon": "/img/Sedekah.png",
   "wakafTampil": true,
+  "wakafIcon": "/img/Wakaf.png",
   "cards": [
     {
       "category": "Zakat",
