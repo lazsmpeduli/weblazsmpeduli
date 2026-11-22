@@ -334,6 +334,17 @@ content:
       - name: linkUmum
         label: Link umum tombol (kosongkan untuk memakai link Lynk utama)
         type: string
+      - name: hargaHewan
+        label: Harga hewan untuk nilai ekuivalen zakat peternakan (kosong atau 0 = nilai ekuivalen tidak ditampilkan)
+        type: object
+        fields:
+          - {name: kambing, label: Kambing atau domba (per ekor, angka saja), type: number}
+          - {name: sapi1, label: Anak sapi umur 1 tahun (per ekor), type: number}
+          - {name: sapi2, label: Anak sapi betina umur 2 tahun (per ekor), type: number}
+          - {name: unta1, label: Unta betina umur 1 tahun (per ekor), type: number}
+          - {name: unta2, label: Unta betina umur 2 tahun (per ekor), type: number}
+          - {name: unta3, label: Unta betina umur 3 tahun (per ekor), type: number}
+          - {name: unta4, label: Unta betina umur 4 tahun (per ekor), type: number}
       - name: links
         label: Link Lynk untuk tiap jenis zakat (kosong = pakai link umum)
         type: object
