@@ -1,12 +1,36 @@
 {
   "judul": "Kalkulator Zakat",
-  "intro": "Hitung zakat Anda, lalu tunaikan melalui kami.",
-  "hargaEmas": 2272000,
-  "hargaPerak": 24502,
-  "hargaGabah": 6495,
+  "intro": "Hitung zakat maal, usaha, penghasilan, pertanian, peternakan, dan fitrah Anda. Tunaikan melalui LAZ SM Peduli.",
+  "hargaEmas": 2234800,
+  "hargaPerak": 24107,
+  "hargaGabah": 6500,
   "hargaBeras": 15000,
-  "tanggalHarga": "Diperbarui 20 November 2026",
+  "tanggalHarga": "Diperbarui 22 November 2026",
   "tombol": "Tunaikan Zakat",
+  "linkUmum": "https://lynk.id/lazsmpeduli/page/zakat",
+  "hargaHewan": {
+    "kambing": 3000000,
+    "sapi1": 8000000,
+    "sapi2": 20000000,
+    "unta1": 25000000,
+    "unta2": 30000000,
+    "unta3": 40000000,
+    "unta4": 70000000
+  },
+  "links": {
+    "emas": "https://lynk.id/lazsmpeduli/556mn7gx8m2p",
+    "perak": "https://lynk.id/lazsmpeduli/556mn7gx8m2p",
+    "uang": "https://lynk.id/lazsmpeduli/556mn7gx8m2p",
+    "surat": "https://lynk.id/lazsmpeduli/556mn7gx8m2p",
+    "niaga": "https://lynk.id/lazsmpeduli/vegxn1z5l0r6",
+    "ikan": "https://lynk.id/lazsmpeduli/vegxn1z5l0r6",
+    "tambang": "https://lynk.id/lazsmpeduli/vegxn1z5l0r6",
+    "perusahaan": "https://lynk.id/lazsmpeduli/vegxn1z5l0r6",
+    "hasil": "https://lynk.id/lazsmpeduli/1mxzgj34m7l1",
+    "tani": "https://lynk.id/lazsmpeduli/pq7np02p0r2q",
+    "ternak": "https://lynk.id/lazsmpeduli/page/zakat",
+    "fitrah": "https://lynk.id/lazsmpeduli/page/zakat"
+  },
   "aktif": {
     "emas": true,
     "perak": true,
@@ -21,7 +45,6 @@
     "ternak": true,
     "fitrah": true
   },
-  "catatan": "Silahkan klik salin jumlah zakat untuk salin nominal zakat Anda. Kemudian tunaikan melalui tombol Tunaikan Zakat",
   "doaMaal": [
     {
       "judul": "Niat zakat maal",
