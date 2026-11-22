@@ -15,7 +15,7 @@
       "image": "/img/Zakat Maal.jpeg",
       "url": "https://lynk.id/lazsmpeduli/556mn7gx8m2p",
       "tracker": false,
-      "slide": false,
+      "slide": true,
       "tampil": true
     },
     {
@@ -89,6 +89,15 @@
       "title": "Sedekah Fasilitas Pondok",
       "image": "/img/Sedekah Fasilitas.jpeg",
       "url": "https://lynk.id/lazsmpeduli/1lw7zjk21g1v",
+      "tracker": false,
+      "slide": false,
+      "tampil": true
+    },
+    {
+      "category": "Zakat",
+      "title": "Zakat Peternakan",
+      "image": "/img/Zakat Peternakan.jpeg",
+      "url": "https://lynk.id/lazsmpeduli/eoz47wgqol0w",
       "tracker": false,
       "slide": false,
       "tampil": true
