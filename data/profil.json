@@ -38,6 +38,11 @@
       "type": "Instagram",
       "url": "https://www.instagram.com/lazsmpeduli/",
       "tampil": true
+    },
+    {
+      "type": "Facebook",
+      "url": "https://www.facebook.com/profile.php?id=61595628045998",
+      "tampil": true
     }
   ]
 }
