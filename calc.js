@@ -1,10 +1,10 @@
 /* Kalkulator zakat. Isi (harga, tautan, doa) dibaca dari data/kalkulator.json.
    Rumus mengikuti buku Fikih Zakat Kontekstual Indonesia (BAZNAS) dan PMA 52/2014. */
 (function () {
-  var DEF = { judul: "Kalkulator Zakat", intro: "Hitung zakat Anda, lalu tunaikan melalui kami. Hasil hitungan berupa perkiraan.",
+  var DEF = { judul: "Kalkulator Zakat", intro: "Hitung zakat Anda, lalu tunaikan melalui kami.",
     hargaEmas: 2000000, hargaPerak: 25000, hargaBeras: 15000, hargaGabah: 4500, tanggalHarga: "",
     tombol: "Tunaikan Zakat", linkUmum: "", links: {},
-    catatan: "Hasil ini hanya perkiraan. Untuk kepastian hukum zakat Anda, tanyakan kepada amil atau ulama." };
+    catatan: "Untuk konsultasi lebih lanjut tentang zakat Anda, hubungi amil LAZ SM Peduli." };
   function get(u) { return fetch(u, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }); }
   Promise.all([get("data/kalkulator.json"), get("data/site.json")]).then(function (r) {
     var D = {}, k; for (k in DEF) D[k] = DEF[k];
@@ -80,31 +80,40 @@ TYPES.tani={g:"tani",label:"Pertanian",desc:"Hasil pertanian, perkebunan, dan ke
   methods:{irigasi:TANI("Pakai irigasi / biaya pengairan (5%)",0.05,true),hujan:TANI("Tadah hujan (10%)",0.1,false)}};
 var NIAT=function(){return 0};
 function cnt(n,w){return n+" ekor "+w}
+var KL={kambing:"kambing",unta1:"unta betina umur 1 tahun",unta2:"unta betina umur 2 tahun",unta3:"unta betina umur 3 tahun",unta4:"unta betina umur 4 tahun",sapi1:"anak sapi jantan atau betina (umur 1 tahun)",sapi2:"anak sapi betina (umur 2 tahun)"};
+function it(q,k,l){return [q,k,l||KL[k]]}
 function unta(n){
   if(n<5)return null;
-  var T=[[9,"1 ekor kambing"],[14,"2 ekor kambing"],[19,"3 ekor kambing"],[24,"4 ekor kambing"],[35,"1 ekor unta betina umur 1 tahun"],[45,"1 ekor unta betina umur 2 tahun"],[60,"1 ekor unta betina umur 3 tahun"],[75,"1 ekor unta betina umur 4 tahun"],[90,"2 ekor unta betina umur 2 tahun"],[120,"2 ekor unta betina umur 3 tahun"]];
-  for(var i=0;i<T.length;i++)if(n<=T[i][0])return T[i][1];
+  var T=[[9,[it(1,"kambing")]],[14,[it(2,"kambing")]],[19,[it(3,"kambing")]],[24,[it(4,"kambing")]],[35,[it(1,"unta1")]],[45,[it(1,"unta2")]],[60,[it(1,"unta3")]],[75,[it(1,"unta4")]],[90,[it(2,"unta2")]],[120,[it(2,"unta3")]]];
+  for(var i=0;i<T.length;i++)if(n<=T[i][0])return {items:T[i][1]};
   var best=null;
   for(var a=0;a*50<=n;a++)for(var b=0;a*50+b*40<=n;b++){var r=n-a*50-b*40;if(best===null||r<best.r||(r===best.r&&a>best.a))best={a:a,b:b,r:r}}
-  var p=[];if(best.a)p.push(best.a+" ekor unta betina umur 3 tahun");if(best.b)p.push(best.b+" ekor unta betina umur 2 tahun");
-  return p.join(" dan ")+" (setiap tambahan 50 ekor: 1 ekor umur 3 tahun, setiap tambahan 40 ekor: 1 ekor umur 2 tahun)";
+  var p=[];if(best.a)p.push(it(best.a,"unta3"));if(best.b)p.push(it(best.b,"unta2"));
+  return {items:p,extra:"Setiap tambahan 50 ekor: 1 ekor umur 3 tahun, setiap tambahan 40 ekor: 1 ekor umur 2 tahun."};
 }
 function sapi(n){
   if(n<30)return null;
-  var T=[[39,"1 ekor anak sapi jantan atau betina (umur 1 tahun)"],[59,"1 ekor anak sapi betina (umur 2 tahun)"],[69,"2 ekor anak sapi jantan atau betina (umur 1 tahun)"],[79,"1 ekor anak sapi betina (umur 2 tahun) dan 1 ekor anak sapi jantan (umur 1 tahun)"],[89,"2 ekor anak sapi betina (umur 2 tahun)"],[99,"3 ekor anak sapi jantan (umur 1 tahun)"],[109,"2 ekor anak sapi betina (umur 1 tahun) dan 2 ekor anak sapi jantan (umur 1 tahun)"],[119,"2 ekor anak sapi betina (umur 2 tahun) dan 1 ekor anak sapi jantan (umur 1 tahun)"],[120,"3 ekor anak sapi betina (umur 2 tahun) atau 3 ekor anak sapi jantan (umur 1 tahun)"]];
-  for(var i=0;i<T.length;i++)if(n<=T[i][0])return T[i][1];
+  var T=[[39,[it(1,"sapi1")]],[59,[it(1,"sapi2")]],[69,[it(2,"sapi1")]],[79,[it(1,"sapi2"),it(1,"sapi1","anak sapi jantan (umur 1 tahun)")]],[89,[it(2,"sapi2")]],[99,[it(3,"sapi1","anak sapi jantan (umur 1 tahun)")]],[109,[it(2,"sapi1","anak sapi betina (umur 1 tahun)"),it(2,"sapi1","anak sapi jantan (umur 1 tahun)")]],[119,[it(2,"sapi2"),it(1,"sapi1","anak sapi jantan (umur 1 tahun)")]],[120,[it(3,"sapi2")],"Atau 3 ekor anak sapi jantan (umur 1 tahun)."]];
+  for(var i=0;i<T.length;i++)if(n<=T[i][0])return {items:T[i][1],extra:T[i][2]};
   var best=null;
   for(var b=0;b*40<=n;b++){var a=Math.floor((n-b*40)/30),r=n-b*40-a*30;if(best===null||r<best.r||(r===best.r&&b>best.b))best={a:a,b:b,r:r}}
-  var p=[];if(best.a)p.push(best.a+" ekor anak sapi jantan atau betina (umur 1 tahun)");if(best.b)p.push(best.b+" ekor anak sapi betina (umur 2 tahun)");
-  return p.join(" dan ");
+  var p=[];if(best.a)p.push(it(best.a,"sapi1"));if(best.b)p.push(it(best.b,"sapi2"));
+  return {items:p};
 }
 function kambing(n){
   if(n<40)return null;
-  if(n<=120)return "1 ekor kambing";if(n<=200)return "2 ekor kambing";if(n<=399)return "3 ekor kambing";
-  return Math.floor(n/100)+" ekor kambing";
+  var q=n<=120?1:n<=200?2:n<=399?3:Math.floor(n/100);
+  return {items:[it(q,"kambing")]};
+}
+function hargaHewan(){var H=D.hargaHewan||{};var g=function(k){return Number(H[k])||0};return{kambing:g("kambing"),sapi1:g("sapi1"),sapi2:g("sapi2"),unta1:g("unta1"),unta2:g("unta2"),unta3:g("unta3"),unta4:g("unta4")}}
+function eqHtml(out){
+  var H=hargaHewan(),tot=0,ok=true;
+  var rows=out.items.map(function(x){var h=H[x[1]]||0,sub=h*x[0];if(!h)ok=false;tot+=sub;return '<div class="row"><span>'+x[0]+' ekor '+x[2]+' × '+rp(h)+'</span><b>'+rp(sub)+'</b></div>'}).join("");
+  if(!ok)return "";
+  return '<div class="msg" style="margin-top:16px"><b>Nilai ekuivalen</b></div><div class="rows">'+rows+'</div><div class="msg" style="margin-top:8px">Total nilai ekuivalen</div><div class="big" style="font-size:1.6rem">'+rp(tot)+'</div><div class="msg" style="font-size:.85rem;margin-top:8px">Nilai dihitung berdasarkan harga hewan yang kami tetapkan.</div>';
 }
 var TER=function(label,fn){return {label:label,ternak:fn,fields:[{id:"n",label:"Jumlah ekor",hint:"Seluruh hewan jenis ini yang Anda miliki",unit:"ekor"}]}};
-TYPES.ternak={g:"ternak",label:"Peternakan",desc:"Hewan ternak yang digembalakan dan dimiliki 1 tahun. Zakatnya berupa hewan, bukan uang. Pilih jenis hewan.",
+TYPES.ternak={g:"ternak",label:"Peternakan",desc:"Hewan ternak yang digembalakan dan dimiliki 1 tahun. Pilih jenis hewan.",
   methods:{unta:TER("Unta",unta),sapi:TER("Sapi / kerbau",sapi),kambing:TER("Kambing / domba",kambing)}};
 function ternak(m,v){
   var n=Math.round(v.n),res=document.getElementById("res"),doa=document.getElementById("doa");
@@ -115,9 +124,9 @@ function ternak(m,v){
   else if(!out){st="Belum wajib zakat";msg="Jumlah ternak belum mencapai nisab."}
   else if(!haul){st="Belum wajib zakat";msg="Sudah mencapai nisab, tetapi belum genap 1 tahun (haul)."}
   else if(!gb){st="Bukan zakat peternakan";msg="Ternak yang dikandangkan dan diniatkan untuk dijual dihitung sebagai zakat perniagaan (lihat tab Zakat Usaha)."}
-  else{st="Wajib zakat";msg="Zakat dibayarkan berupa hewan, bukan uang.";big=out}
+  else{st="Wajib zakat";msg="Zakat Anda berupa hewan.";big=out.items.map(function(x){return x[0]+" ekor "+x[2]}).join(" dan ")+(out.extra?" ("+out.extra+")":"")}
   var w=st==="Wajib zakat";
-  res.innerHTML='<span class="st'+(w?'':' no')+'">'+st+'</span><p class="msg">'+msg+'</p><div class="rows"><div class="row"><span>Jenis hewan</span><b>'+m.label+'</b></div><div class="row"><span>Jumlah</span><b>'+(n>0?n+" ekor":"-")+'</b></div></div>'+(w?'<div class="msg" style="margin-top:14px">Zakat yang harus dikeluarkan</div><div class="big" style="font-size:1.5rem;line-height:1.3">'+big+'</div><div class="msg" style="font-size:.85rem;margin-top:8px">Hubungi LAZ SM Peduli untuk menunaikan, atau menukar dengan nilai hewan sesuai ketentuan amil.</div>':'');
+  res.innerHTML='<span class="st'+(w?'':' no')+'">'+st+'</span><p class="msg">'+msg+'</p><div class="rows"><div class="row"><span>Jenis hewan</span><b>'+m.label+'</b></div><div class="row"><span>Jumlah</span><b>'+(n>0?n+" ekor":"-")+'</b></div></div>'+(w?'<div class="msg" style="margin-top:14px">Zakat yang harus dikeluarkan</div><div class="big" style="font-size:1.5rem;line-height:1.3">'+big+'</div>'+eqHtml(out)+'<div class="msg" style="font-size:.85rem;margin-top:8px">Hubungi LAZ SM Peduli untuk menunaikan zakat peternakan Anda.</div>':'');
   doa.innerHTML=w?'<div class="doa">'+DOA.map(function(d){return '<h3>'+d.t+'</h3><div class="ar" lang="ar">'+d.ar+'</div><p class="lat">'+d.lat+'</p><p class="kart">'+d.art+'</p>'}).join("")+'</div>':"";
 }
 var DOAF=[{t:"Niat zakat fitrah untuk diri sendiri",ar:"نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنْ نَفْسِي فَرْضًا لِلَّهِ تَعَالَى",lat:"Nawaitu an ukhrija zakātal-fitri ‘an nafsī fardhan lillāhi ta‘ālā.",art:"Aku berniat mengeluarkan zakat fitrah untuk diriku, fardu karena Allah Ta‘ala."},{t:"Niat zakat fitrah untuk keluarga",ar:"نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنِّي وَعَنْ جَمِيعِ مَا يَلْزَمُنِي نَفَقَاتُهُمْ شَرْعًا فَرْضًا لِلَّهِ تَعَالَى",lat:"Nawaitu an ukhrija zakātal-fitri ‘annī wa ‘an jamī‘i mā yalzamunī nafaqātuhum syar‘an fardhan lillāhi ta‘ālā.",art:"Aku berniat mengeluarkan zakat fitrah untuk diriku dan semua orang yang nafkahnya menjadi tanggunganku, fardu karena Allah Ta‘ala."},DOA[1]];
