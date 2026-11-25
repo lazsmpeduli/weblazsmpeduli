@@ -108,6 +108,7 @@ content:
         label: Footer (bagian bawah situs)
         type: object
         fields:
+          - {name: namaResmi, label: "Nama resmi lembaga (tampil di bawah nama di footer, contoh LAZ Sabilil Muttaqien Peduli)", type: string}
           - {name: description, label: Kalimat deskripsi (kosongkan untuk kalimat bawaan), type: text}
           - {name: quickTitle, label: Judul kolom tautan (contoh Tautan), type: string}
           - {name: donateText, label: Tulisan link donasi (contoh Donasi sekarang), type: string}
@@ -199,6 +200,15 @@ content:
     fields:
       - {name: title, label: Judul halaman Artikel, type: string}
       - {name: intro, label: Kalimat pengantar halaman Artikel, type: text}
+      - {name: perHalaman, label: "Jumlah artikel per halaman sebelum tombol Muat lebih banyak (kosongkan = 9)", type: number}
+      - name: kategoriUrut
+        label: "Urutan tombol kategori (opsional). Tulis nama kategori satu per baris sesuai urutan yang diinginkan"
+        type: string
+        list: true
+      - name: kataSepadan
+        label: "Kata sepadan untuk pencarian. Satu baris satu kelompok ejaan, pisahkan dengan koma, contoh: infak, infaq. Kosongkan = daftar bawaan"
+        type: string
+        list: true
       - name: articles
         label: Daftar artikel
         type: object
@@ -206,12 +216,27 @@ content:
         fields:
           - {name: title, label: Judul, type: string}
           - {name: date, label: Tanggal, type: date}
-          - {name: summary, label: Ringkasan singkat (tampil di kartu dan slide), type: text}
+          - name: kategori
+            label: "Kategori (satu saja). Kategori baru ditambah di menu Kategori Artikel"
+            type: reference
+            options:
+              collection: kategori
+              search: nama
+              value: "{fields.nama}"
+              label: "{fields.nama}"
+          - {name: summary, label: "Ringkasan singkat (tampil di kartu dan slide, kosongkan = diambil dari awal isi)", type: text}
           - {name: image, label: Gambar, type: image}
           - {name: body, label: "Isi lengkap (pisahkan paragraf dengan baris kosong; awali baris dengan ## untuk sub judul)", type: text}
           - {name: tampilSlide, label: Tampilkan di slideshow beranda, type: boolean, default: false}
           - {name: gambarSlide, label: "Gambar slide (foto lebar, OPSIONAL. Kosongkan = slide memakai Gambar sebagai poster kotak)", type: image}
           - {name: tampil, label: Tampilkan (matikan untuk menyembunyikan), type: boolean, default: true}
+  - name: kategori
+    label: Kategori Artikel (tambah atau ubah nama kategori di sini)
+    type: collection
+    path: data/kategori
+    format: json
+    fields:
+      - {name: nama, label: Nama kategori, type: string}
   - name: berita
     label: Berita (Kabar)
     type: file
