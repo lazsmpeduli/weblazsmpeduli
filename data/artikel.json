@@ -1,6 +1,15 @@
 {
   "title": "Seputar Zakat, Infaq dan Sodaqoh",
   "intro": "Bacaan seputar zakat, infaq, dan sodaqoh",
+  "kataSepadan": [
+    "infak, infaq, infaaq",
+    "sedekah, sodaqoh, shodaqoh, sadaqah",
+    "wakaf, waqaf, waqf",
+    "nazhir, nadzir, nazir",
+    "zakat, zakah",
+    "Al-Quran, Al-Qur'an, Qur'an, Quran",
+    "hadis, hadits, hadith"
+  ],
   "articles": [
     {
       "title": "Pengertian Zakat dan Jenisnya",
