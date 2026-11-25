@@ -1,0 +1,3 @@
+{
+  "nama": "Infak & Sedekah"
+}
