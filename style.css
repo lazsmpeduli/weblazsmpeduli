@@ -219,3 +219,18 @@ nav a[aria-current]{box-shadow:none;color:var(--leaf)}nav .sub{position:static;b
 header{transition:transform .25s ease}
 header.hide{transform:translateY(-100%)}
 @media(prefers-reduced-motion:reduce){header{transition:none}}
+
+/* ===== Artikel: kategori, pencarian, muat lebih banyak ===== */
+.art .back{display:block;width:fit-content}
+.ktag{display:inline-block;background:var(--mist);color:var(--leaf);font-weight:700;font-size:.8rem;line-height:1.5;padding:2px 10px;border-radius:999px;margin:0 8px 6px 0}
+.art .ktag{margin-bottom:8px}
+.atools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:0 0 18px}
+.achips{display:flex;gap:8px;flex-wrap:wrap;flex:1 1 auto}
+.achips button{border:1.5px solid var(--leaf);background:transparent;color:var(--forest);padding:8px 16px;border-radius:999px;font:700 .95rem var(--fb),system-ui,sans-serif;cursor:pointer}
+.achips button[aria-pressed=true]{background:var(--leaf);color:#fff}
+.achips small{opacity:.75;margin-left:4px;font-weight:600}
+.asearch{flex:0 1 260px;min-width:0;width:100%;max-width:300px;padding:10px 14px;border:1.5px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:1rem var(--fb),system-ui,sans-serif}
+.qhint{color:var(--mut);font-size:.95rem;margin:-6px 0 14px}.qhint:empty{display:none}.qhint b{color:var(--leaf)}
+.amore{display:flex;flex-direction:column;align-items:center;gap:8px;margin:28px 0 0;color:var(--mut)}.amore:empty{display:none}
+.amore button{background:var(--sun);color:var(--forest);border:0;font:700 1rem var(--fb),system-ui,sans-serif;padding:13px 28px;border-radius:999px;cursor:pointer}
+.fcol .fl{margin:2px 0 8px;font-size:.95rem}

@@ -25,6 +25,7 @@ function run(S) {
   S.news = (S.news || []).filter(on).sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
   S.stats = (S.stats || []).filter(on);
   S.arts = ((S.artikel && S.artikel.articles) || []).filter(function (a) { return on(a) && a.title; }).sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+  S.arts.forEach(function (a) { if (!a.summary) { a.summary = snip(String(a.body || "").split(/\n\s*\n/)[0], 150); } });
   applyTheme(S.theme);
   try { localStorage.setItem("lazTheme", JSON.stringify(S.theme || {})); } catch (e) {}
   function slug(t) { return String(t || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
@@ -36,13 +37,30 @@ function run(S) {
   function fmt(n, money) { return (money ? "Rp " : "") + Math.round(n).toLocaleString("id-ID"); }
   function dateId(d) { return new Date(d).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }); }
   function esc(t) { var e = document.createElement("div"); e.textContent = t || ""; return e.innerHTML; }
+  function snip(t, n) {
+    t = String(t || "").replace(/^##\s+/, "").replace(/\s+/g, " ").trim();
+    if (t.length <= n) return t;
+    t = t.slice(0, n); var i = t.lastIndexOf(" ");
+    return (i > n * 0.6 ? t.slice(0, i) : t).replace(/[\s,.;:\-]+$/, "") + "\u2026";
+  }
+  var SITE = String(S.url || "https://lazsmpeduli.org").replace(/\/$/, "");
+  function setMeta(desc, path) {
+    var d = document.querySelector('meta[name="description"]');
+    if (desc) {
+      if (!d) { d = document.createElement("meta"); d.name = "description"; document.head.appendChild(d); }
+      d.content = snip(desc, 155);
+    }
+    var c = document.querySelector('link[rel="canonical"]');
+    if (!c) { c = document.createElement("link"); c.rel = "canonical"; document.head.appendChild(c); }
+    c.href = SITE + path;
+  }
 
-  function card(n, base) {
-    return '<a class="card" href="' + (base || "article.html") + '?id=' + encodeURIComponent(idOf(n)) + '">' + (n.image ? '<img src="' + esc(n.image) + '" alt="" loading="lazy">' : '<div class="ph"></div>') +
-      '<div class="cb"><time>' + dateId(n.date) + '</time><h3>' + esc(n.title) + '</h3><p>' + esc(n.summary) + '</p></div></a>';
+  function card(n, base, tag) {
+    return '<a class="card" href="' + (typeof base === "string" ? base : "article.html") + '?id=' + encodeURIComponent(idOf(n)) + '">' + (n.image ? '<img src="' + esc(n.image) + '" alt="" loading="lazy">' : '<div class="ph"></div>') +
+      '<div class="cb">' + (typeof tag === "string" && tag ? '<span class="ktag">' + esc(tag) + '</span>' : '') + '<time>' + dateId(n.date) + '</time><h3>' + esc(n.title) + '</h3><p>' + esc(n.summary) + '</p></div></a>';
   }
   function renderNews(el, list) {
-    el.innerHTML = list.length ? list.map(card).join("") :
+    el.innerHTML = list.length ? list.map(function (x) { return card(x); }).join("") :
       '<p class="empty">Belum ada kabar. Tambahkan kegiatan pertama Anda di <code>data/site.json</code>.</p>';
   }
   function toParas(t) {
@@ -110,6 +128,7 @@ function run(S) {
     if (F.email) contact.push('<li><a href="mailto:' + esc(F.email) + '">' + esc(F.email) + '</a></li>');
     if (F.hours) contact.push('<li>' + esc(F.hours) + '</li>');
     $("#ftr").innerHTML = '<div class="wrap foot"><div class="fcol"><strong>' + esc(S.name) + '</strong>' +
+      (F.namaResmi && F.namaResmi !== S.name ? '<p class="fl">' + esc(F.namaResmi) + '</p>' : '') +
       toParas(desc).map(function (x) { return '<p>' + esc(x) + '</p>'; }).join("") + (ic ? '<div class="fsoc">' + ic + '</div>' : '') + '</div>' +
       '<div class="fcol"><h4>' + esc(F.quickTitle || "Tautan") + '</h4><ul><li><a href="' + href(S.lynk) + '" target="_blank" rel="noopener">' + esc(F.donateText || "Donasi sekarang") + '</a></li>' + quick + '</ul></div>' +
       (contact.length ? '<div class="fcol"><h4>' + esc(F.contactTitle || "Kontak") + '</h4><ul>' + contact.join("") + '</ul></div>' : '') +
@@ -176,7 +195,7 @@ function run(S) {
       '<time>' + dateId(n.date) + '</time><h1>' + esc(n.title) + '</h1>' + (n.image ? '<img src="' + esc(n.image) + '" alt="">' : '') +
       paras(n).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join("") +
       (n.source ? '<p class="src">Sumber: ' + (n.sourceUrl ? '<a href="' + esc(n.sourceUrl) + '" target="_blank" rel="noopener">' + esc(n.source) + '</a>' : esc(n.source)) + '</p>' : '') : '<h1>Berita tidak ditemukan</h1><p>Periksa tautan, atau buka halaman Kabar.</p>');
-    if (n) document.title = n.title + " | " + S.name;
+    if (n) { document.title = n.title + " | " + S.name; setMeta(n.summary || paras(n)[0], "/article?id=" + encodeURIComponent(idOf(n))); }
   }
 
 
@@ -326,16 +345,56 @@ function run(S) {
     var A = S.artikel || {}, aid = new URLSearchParams(location.search).get("id");
     var an = S.arts.filter(function (x) { return idOf(x) === aid; })[0];
     function abody(n) {
-      return toParas(n.body).map(function (t) { return /^##\s+/.test(t) ? '<h2 class="ah">' + esc(t.replace(/^##\s+/, "")) + '</h2>' : '<p>' + esc(t) + '</p>'; }).join("") || '<p>' + esc(n.summary) + '</p>';
+      return toParas(n.body).map(function (t) { return /^##\s+/.test(t) ? '<h2 class="ah">' + esc(t.replace(/^##\s+/, "")) + '</h2>' : '<p>' + esc(t).replace(/\n/g, "<br>") + '</p>'; }).join("") || '<p>' + esc(n.summary) + '</p>';
     }
     if (aid) {
       $("#artPage").innerHTML = '<div class="art"><a class="back" href="artikel.html">&larr; Semua artikel</a>' + (an ?
-        '<time>' + dateId(an.date) + '</time><h1>' + esc(an.title) + '</h1>' + (an.image ? '<img src="' + esc(an.image) + '" alt="">' : '') + abody(an) +
+        (an.kategori ? '<span class="ktag">' + esc(an.kategori) + '</span>' : '') + '<time>' + dateId(an.date) + '</time><h1>' + esc(an.title) + '</h1>' + (an.image ? '<img src="' + esc(an.image) + '" alt="">' : '') + abody(an) +
         '<p><a class="zlink" href="' + href(S.lynk) + '"' + ext(S.lynk) + '>Tunaikan kebaikan Anda &raquo;</a></p>' : '<h1>Artikel tidak ditemukan</h1><p>Periksa tautan, atau buka halaman Artikel.</p>') + '</div>';
-      if (an) document.title = an.title + " | " + S.name;
+      if (an) { document.title = an.title + " | " + S.name; setMeta(an.summary, "/artikel?id=" + encodeURIComponent(idOf(an))); }
     } else {
+      var per = Math.max(3, parseInt(A.perHalaman, 10) || 9);
+      function nz(t) { return String(t || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
+      /* kata sepadan: satu baris = satu kelompok ejaan */
+      var DEFSY = ["infak, infaq, infaaq", "sedekah, sodaqoh, shodaqoh, sadaqah", "wakaf, waqaf, waqf", "nazhir, nadzir, nazir", "zakat, zakah"];
+      var rawSY = (A.kataSepadan && A.kataSepadan.length ? A.kataSepadan : DEFSY).map(function (x) { return typeof x === "string" ? x : (x && (x.kata || x.value || x.text)) || ""; });
+      var SYG = rawSY.map(function (l) { return String(l).split(/[,;=]/).map(nz).filter(Boolean); }).filter(function (g) { return g.length > 1; });
+      function variants(w) { var r = [w]; SYG.forEach(function (g) { if (g.indexOf(w) > -1) r = g; }); return r; }
+      /* kategori: hanya yang punya artikel */
+      var cm = {}, order = [];
+      S.arts.slice().reverse().forEach(function (a) {
+        var k = nz(a.kategori); a._k = k; if (!k) return;
+        if (!cm[k]) { cm[k] = { label: String(a.kategori).trim(), n: 0 }; order.push(k); }
+        cm[k].n++;
+      });
+      var pref = (A.kategoriUrut && A.kategoriUrut.length ? A.kategoriUrut : ["Zakat", "Infak & Sedekah", "Wakaf"]).map(function (x) { return nz(typeof x === "string" ? x : (x && (x.nama || x.value)) || ""); });
+      order.sort(function (a, b) { var i = pref.indexOf(a), j = pref.indexOf(b); if (i < 0) i = 99; if (j < 0) j = 99; return i - j; });
+      S.arts.forEach(function (a) { a._t = nz(a.title + " " + a.summary + " " + a.kategori + " " + a.body); });
+      var st = { k: "all", q: "", n: per };
       $("#artPage").innerHTML = '<h1>' + esc(A.title || "Artikel") + '</h1>' + (A.intro ? '<p class="lead">' + esc(A.intro) + '</p>' : '') +
-        '<div class="grid">' + (S.arts.length ? S.arts.map(function (n) { return card(n, "artikel.html"); }).join("") : '<p class="empty">Belum ada artikel.</p>') + '</div>';
+        (S.arts.length ? '<div class="atools"><div class="achips" id="aChips" role="group" aria-label="Kategori artikel"></div><input class="asearch" id="aQ" type="search" placeholder="Cari artikel" aria-label="Cari artikel"></div><div class="qhint" id="aH"></div>' : '') +
+        '<div class="grid" id="aGrid"></div><div class="amore" id="aMore"></div>';
+      var paint = function () {
+        var chips = '<button type="button" data-k="all" aria-pressed="' + (st.k === "all") + '">Semua<small>' + S.arts.length + '</small></button>';
+        order.forEach(function (k) { chips += '<button type="button" data-k="' + esc(k) + '" aria-pressed="' + (st.k === k) + '">' + esc(cm[k].label) + '<small>' + cm[k].n + '</small></button>'; });
+        if ($("#aChips")) $("#aChips").innerHTML = order.length ? chips : "";
+        var words = nz(st.q).split(" ").filter(Boolean), hint = [];
+        words.forEach(function (w) { var v = variants(w); if (v.length > 1) hint.push("<b>" + v.map(esc).join(" / ") + "</b>"); });
+        if ($("#aH")) $("#aH").innerHTML = hint.length ? "Juga mencari ejaan lain: " + hint.join(", ") : "";
+        var list = S.arts.filter(function (a) {
+          return (st.k === "all" || a._k === st.k) && words.every(function (w) { return variants(w).some(function (v) { return a._t.indexOf(v) > -1; }); });
+        });
+        var vis = list.slice(0, st.n);
+        $("#aGrid").innerHTML = vis.length ? vis.map(function (n) { return card(n, "artikel.html", n.kategori); }).join("") : '<p class="empty">' + (S.arts.length ? "Tidak ada artikel yang cocok." : "Belum ada artikel.") + '</p>';
+        $("#aMore").innerHTML = list.length > vis.length ? '<button type="button" id="aMoreBtn">Muat lebih banyak</button><span>Menampilkan ' + vis.length + ' dari ' + list.length + ' artikel</span>' : "";
+      };
+      $("#artPage").addEventListener("click", function (e) {
+        var b = e.target.closest ? e.target.closest("button") : null; if (!b) return;
+        if (b.dataset.k) { st.k = b.dataset.k; st.n = per; paint(); }
+        if (b.id === "aMoreBtn") { st.n += per; paint(); }
+      });
+      if ($("#aQ")) $("#aQ").addEventListener("input", function () { st.q = this.value; st.n = per; paint(); });
+      paint();
       document.title = (A.title || "Artikel") + " | " + S.name;
     }
   }
